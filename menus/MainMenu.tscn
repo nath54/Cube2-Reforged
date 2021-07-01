@@ -1,0 +1,413 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://res/fonts/8-bit-limit/8bitlimr.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://res/fonts/blockstepped/Blockstepped.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://res/skins/1/Skin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://res/ui/money.png" type="Texture" id=5]
+[ext_resource path="res://res/ui/top_bar.png" type="Texture" id=6]
+[ext_resource path="res://res/ui/main_menu_buttons/play_pressed.png" type="Texture" id=7]
+[ext_resource path="res://res/ui/main_menu_buttons/play_base.png" type="Texture" id=8]
+[ext_resource path="res://res/ui/main_menu_buttons/skin_pressed.png" type="Texture" id=9]
+[ext_resource path="res://res/ui/main_menu_buttons/shop_base.png" type="Texture" id=10]
+[ext_resource path="res://res/ui/main_menu_buttons/settings_base.png" type="Texture" id=11]
+[ext_resource path="res://res/ui/main_menu_buttons/skins_base.png" type="Texture" id=12]
+[ext_resource path="res://res/ui/main_menu_buttons/settings_pressed.png" type="Texture" id=13]
+[ext_resource path="res://res/ui/main_menu_buttons/shop_pressed.png" type="Texture" id=14]
+[ext_resource path="res://res/ui/main_menu_buttons/success_pressed.png" type="Texture" id=15]
+[ext_resource path="res://res/ui/main_menu_buttons/success_base.png" type="Texture" id=16]
+[ext_resource path="res://res/ui/main_menu_buttons/credits_base.png" type="Texture" id=17]
+[ext_resource path="res://res/ui/main_menu_buttons/help_pressed.png" type="Texture" id=18]
+[ext_resource path="res://res/ui/main_menu_buttons/credits_pressed.png" type="Texture" id=19]
+[ext_resource path="res://res/ui/main_menu_buttons/quit_base.png" type="Texture" id=20]
+[ext_resource path="res://res/ui/main_menu_buttons/help_base.png" type="Texture" id=21]
+[ext_resource path="res://res/ui/main_menu_buttons/quit_pressed.png" type="Texture" id=22]
+[ext_resource path="res://menus/MainMenu.gd" type="Script" id=23]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 45
+font_data = ExtResource( 1 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 50, 50 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 25
+font_data = ExtResource( 3 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+collapsed = true
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer"]
+margin_right = 1024.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 120 )
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/CenterContainer"]
+margin_left = 256.0
+margin_right = 768.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 512, 120 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/CenterContainer"]
+margin_left = 374.0
+margin_top = 11.0
+margin_right = 650.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 276, 97 )
+custom_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/CenterContainer/HBoxContainer"]
+margin_right = 112.0
+margin_bottom = 97.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_right = 112.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="Skin" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer/ViewportContainer" instance=ExtResource( 4 )]
+position = Vector2( 50, 30 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Label" type="Label" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 112.0
+margin_bottom = 97.0
+custom_fonts/font = SubResource( 1 )
+text = "Mon skin"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="CenterContainer" parent="VSplitContainer/CenterContainer/HBoxContainer"]
+margin_left = 162.0
+margin_right = 276.0
+margin_bottom = 97.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 114.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_top = 3.0
+margin_right = 70.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 2 )
+text = "99999"
+
+[node name="TextureRect" type="TextureRect" parent="VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 74.0
+margin_right = 114.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer"]
+margin_top = 170.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 71.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VSplitContainer/VBoxContainer/CenterContainer"]
+margin_left = 323.0
+margin_right = 700.0
+margin_bottom = 71.0
+
+[node name="Cube 2" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 5.0
+margin_right = 156.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "Cube 2"
+align = 1
+valign = 1
+
+[node name="-" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_left = 160.0
+margin_right = 188.0
+margin_bottom = 71.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "-"
+align = 1
+valign = 1
+
+[node name="Reforged" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_left = 192.0
+margin_top = 11.0
+margin_right = 377.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Reforged"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="VSplitContainer/VBoxContainer"]
+margin_top = 121.0
+margin_right = 1024.0
+margin_bottom = 371.0
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer/VBoxContainer/CenterContainer2"]
+margin_left = 237.0
+margin_right = 787.0
+margin_bottom = 250.0
+custom_constants/vseparation = 50
+custom_constants/hseparation = 50
+columns = 4
+
+[node name="BtPlay" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtPlay" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtPlay"]
+normal = ExtResource( 8 )
+pressed = ExtResource( 7 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtPlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "play"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtSkins" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 150.0
+margin_right = 250.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtSkins" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSkins"]
+normal = ExtResource( 12 )
+pressed = ExtResource( 9 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSkins"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "skins"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtShop" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 300.0
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtShop" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtShop"]
+normal = ExtResource( 10 )
+pressed = ExtResource( 14 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtShop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "shop"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtSuccess" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 450.0
+margin_right = 550.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtSuccess" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSuccess"]
+normal = ExtResource( 16 )
+pressed = ExtResource( 15 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSuccess"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "sucess"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtSettings" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_top = 150.0
+margin_right = 100.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtSettings" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSettings"]
+normal = ExtResource( 11 )
+pressed = ExtResource( 13 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "settings"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtHelp" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 150.0
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtHelp" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtHelp"]
+normal = ExtResource( 21 )
+pressed = ExtResource( 18 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtHelp"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "help"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtCredits" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 300.0
+margin_top = 150.0
+margin_right = 400.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtCredits" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtCredits"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 19 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtCredits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "credits"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtQuit" type="Control" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer"]
+margin_left = 450.0
+margin_top = 150.0
+margin_right = 550.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 100, 100 )
+
+[node name="BtQuit" type="TouchScreenButton" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtQuit"]
+normal = ExtResource( 20 )
+pressed = ExtResource( 22 )
+shape = SubResource( 6 )
+
+[node name="Label" type="Label" parent="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtQuit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 80 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "quit"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="resized" from="." to="." method="_on_MainMenu_resized"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtPlay/BtPlay" to="." method="_on_BtPlay_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSkins/BtSkins" to="." method="_on_BtSkins_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtShop/BtShop" to="." method="_on_BtShop_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSuccess/BtSuccess" to="." method="_on_BtSuccess_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtSettings/BtSettings" to="." method="_on_BtSettings_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtHelp/BtHelp" to="." method="_on_BtHelp_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtCredits/BtCredits" to="." method="_on_BtCredits_pressed"]
+[connection signal="pressed" from="VSplitContainer/VBoxContainer/CenterContainer2/GridContainer/BtQuit/BtQuit" to="." method="_on_BtQuit_pressed"]

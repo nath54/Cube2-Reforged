@@ -1,0 +1,284 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://menus/Credits.gd" type="Script" id=1]
+[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 1, 1, 1, 1 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer"]
+margin_right = 1024.0
+margin_bottom = 60.0
+dragger_visibility = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer/HSplitContainer"]
+margin_right = 100.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 100, 60 )
+
+[node name="BtMenu" type="Button" parent="VSplitContainer/HSplitContainer/CenterContainer"]
+margin_left = 12.0
+margin_top = 7.0
+margin_right = 87.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 75, 45 )
+custom_fonts/font = SubResource( 2 )
+text = "Menu"
+
+[node name="Credits" type="Label" parent="VSplitContainer/HSplitContainer"]
+margin_left = 112.0
+margin_right = 1024.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 3 )
+text = "Credits"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer"]
+margin_top = 72.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer/CenterContainer"]
+margin_left = 147.0
+margin_top = 137.0
+margin_right = 877.0
+margin_bottom = 391.0
+custom_constants/vseparation = 50
+custom_constants/hseparation = 50
+columns = 3
+
+[node name="MainDev" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_right = 210.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
+margin_right = 210.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 4 )
+text = "Main Development"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
+margin_top = 73.0
+margin_right = 210.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
+margin_top = 87.0
+margin_right = 210.0
+margin_bottom = 120.0
+custom_fonts/font = SubResource( 4 )
+text = "Cerisara Nathan"
+align = 1
+valign = 1
+
+[node name="Dev" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_left = 260.0
+margin_right = 470.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Dev"]
+margin_right = 210.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 4 )
+text = "Development"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Dev"]
+margin_top = 37.0
+margin_right = 210.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Dev"]
+margin_top = 51.0
+margin_right = 210.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 4 )
+text = "Cerisara Nathan"
+align = 1
+valign = 1
+
+[node name="Story" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_left = 520.0
+margin_right = 730.0
+margin_bottom = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Story"]
+margin_right = 210.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 4 )
+text = "Story"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Story"]
+margin_top = 37.0
+margin_right = 210.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Story"]
+margin_top = 51.0
+margin_right = 210.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 4 )
+text = "Cerisara Nathan"
+align = 1
+valign = 1
+
+[node name="Arts" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_top = 170.0
+margin_right = 210.0
+margin_bottom = 254.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
+margin_right = 210.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 4 )
+text = "Arts"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
+margin_top = 37.0
+margin_right = 210.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
+margin_top = 51.0
+margin_right = 210.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 4 )
+text = "Cerisara Nathan"
+align = 1
+valign = 1
+
+[node name="Music" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_left = 260.0
+margin_top = 170.0
+margin_right = 470.0
+margin_bottom = 254.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Music"]
+margin_right = 210.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 4 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Music"]
+margin_top = 37.0
+margin_right = 210.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Music"]
+margin_top = 51.0
+margin_right = 210.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 4 )
+text = "Nobody"
+align = 1
+valign = 1
+
+[node name="Sfx" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
+margin_left = 520.0
+margin_top = 170.0
+margin_right = 730.0
+margin_bottom = 254.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Sfx"]
+margin_right = 210.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 4 )
+text = "Sfx"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Sfx"]
+margin_top = 37.0
+margin_right = 210.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 5 )
+
+[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Sfx"]
+margin_top = 51.0
+margin_right = 210.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 4 )
+text = "Nodbody"
+align = 1
+valign = 1
+[connection signal="resized" from="." to="." method="_on_Credits_resized"]
+[connection signal="pressed" from="VSplitContainer/HSplitContainer/CenterContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
