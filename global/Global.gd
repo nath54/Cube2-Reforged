@@ -3,6 +3,7 @@ extends Node
 var scenes: Node = null
 var player: Node = null
 var level: Node = null
+var fin: Node = null
 
 # 0: très facile
 # 1: facile

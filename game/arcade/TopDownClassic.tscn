@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/arcade/TopDownClassic.gd" type="Script" id=1]
 [ext_resource path="res://game/player/Player_TopDown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/tiles/TopDown1.tres" type="TileSet" id=3]
+[ext_resource path="res://game/tiles/fin.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.176471, 0.729412, 0.129412, 1 )
@@ -21,6 +22,9 @@ cell_size = Vector2( 100, 100 )
 format = 1
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="Fin" parent="Items" instance=ExtResource( 4 )]
+scale = Vector2( 0.5, 0.5 )
 
 [node name="Player" type="Node2D" parent="."]
 

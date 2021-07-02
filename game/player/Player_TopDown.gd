@@ -11,8 +11,8 @@ var speed_x: float = 0
 var speed_y: float = 0
 
 var max_speed: float = 100
-var acceleration: float = 10
-var decceleration: float = 0.99
+var acceleration: float = 20
+var decceleration: float = 0.98
 
 var catched_keys: Array = []
 
@@ -84,11 +84,11 @@ func collisions() -> void:
 				elif (map.map[y][x]==0 and Global.difficulty==0) or map.map[y][x]==2:
 					print(col["side"])
 					if col["side"] == "right":
-						self.x = x * tc - self.t - 1 
+						self.x = x * tc - self.t 
 						self.speed_x = 0
 					elif col["side"] == "left":
-						self.speed_x = 0
 						self.x = ( x + 1 ) * tc
+						self.speed_x = 0
 					if col["side"] == "bottom":
 						self.y = y * tc - self.t
 						self.speed_y = 0
@@ -96,8 +96,34 @@ func collisions() -> void:
 						self.y = ( y + 1 ) * tc
 						self.speed_y = 0
 					elif col["side"] == "top-left":
-						if abs(x*tc-(self.x)) >= abs(y*tc-self.y):
-							pass
+						if (x+1) * tc - self.x <= (y + 1) * tc - self.y:
+							self.x = ( x + 1 ) * tc
+							self.speed_x = 0
+						else:
+							self.y = ( y + 1 ) * tc
+							self.speed_y = 0
+					elif col["side"] == "top-right":
+						if (self.x + self.t) - x * tc <= (y + 1) * tc - self.y:
+							self.x = x * tc - self.t - 1 
+							self.speed_x = 0
+						else:
+							self.y = ( y + 1 ) * tc
+							self.speed_y = 0
+					elif col["side"] == "bottom-right":
+						if (self.x + self.t) - x * tc <= (self.y + self.t) - y * tc:
+							self.x = x * tc - self.t - 1 
+							self.speed_x = 0
+						else:
+							self.y = y * tc - self.t
+							self.speed_y = 0
+					elif col["side"] == "bottom-left":
+						if (x + 1) * tc - self.x <= (self.y + self.t) - y * tc:
+							self.x = ( x + 1 ) * tc
+							self.speed_x = 0
+						else:
+							self.y = y * tc - self.t
+							self.speed_y = 0
+
 				if map.map[y][x] == 2 and map.p1: self.life -= 50
 				if map.fin == [x,y]:
 					Global.level_fini()

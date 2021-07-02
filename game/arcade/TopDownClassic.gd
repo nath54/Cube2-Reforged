@@ -45,6 +45,7 @@ func generate() -> void:
 						map[y][x] = 0 # 0 = vide
 		fins.append([chem[0], chem[1]])
 	fin = fins[rng.randi_range(0, len(fins)-1)]
+	$Items/Fin.position = Vector2(fin[0]*tc, fin[1]*tc)
 	#
 	Global.player.x = deb[0] * tc
 	Global.player.y = deb[1] * tc
