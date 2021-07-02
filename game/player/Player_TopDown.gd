@@ -1,5 +1,8 @@
 extends Node2D
 
+var spawn_x: float = 0
+var spawn_y: float = 0
+
 var x: float = 0
 var y: float = 0
 var t: float = 50
@@ -10,15 +13,38 @@ var life: int = max_life
 var speed_x: float = 0
 var speed_y: float = 0
 
-var max_speed: float = 100
-var acceleration: float = 20
-var decceleration: float = 0.98
+var max_speed: float = 30
+var acceleration: float = 15
+var decceleration: float = 0.97
 
 var catched_keys: Array = []
+
+var rebondit_cols = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.player = self
+	if Global.difficulty == 0:
+		acceleration = 10
+		decceleration = 0.95
+		max_speed = 30
+	elif Global.difficulty == 1:
+		acceleration = 15
+		decceleration = 0.96
+		max_speed = 35
+	elif Global.difficulty == 2:
+		acceleration = 20
+		decceleration = 0.97
+		max_speed = 40
+	elif Global.difficulty == 3:
+		acceleration = 22
+		decceleration = 0.98
+		max_speed = 45
+	elif Global.difficulty == 4:
+		acceleration = 25
+		decceleration = 0.99
+		max_speed = 50
+	
 
 func movement(delta: float) -> void:
 	if Input.is_action_pressed("up"):
@@ -29,20 +55,31 @@ func movement(delta: float) -> void:
 		speed_x -= acceleration * delta
 	elif Input.is_action_pressed("right"):
 		speed_x += acceleration * delta
+	else:
+		speed_x *= decceleration
+		speed_y *= decceleration
 	#
 	speed_x = clamp(speed_x, -max_speed, max_speed)
 	speed_y = clamp(speed_y, -max_speed, max_speed)
 	#
-	speed_x *= decceleration
-	speed_y *= decceleration
 
 func _process(delta: float):
 	movement(delta)
 	x += speed_x
 	y += speed_y
 	collisions()
+	test_life()
 	position = Vector2(x, y);
 
+func test_life() -> void:
+	if life <= 0:
+		if Global.difficulty == 4:
+			Global.lose_game()
+		life = max_life
+		x = spawn_x
+		y = spawn_y
+		speed_x = 0
+		speed_y = 0
 
 func square_col(x1:float, y1:float, tx1:float, ty1:float, x2:float, y2:float, tx2:float, ty2:float) -> Dictionary:
 	if x1 <= x2 and x1+tx1 >= x2 and y1>=y2 and y1+ty1<=y2+ty2:
@@ -68,11 +105,12 @@ func square_col(x1:float, y1:float, tx1:float, ty1:float, x2:float, y2:float, tx
 func collisions() -> void:
 	var tc: int = Global.level.tc
 	var map: Node = Global.level
+	var tilemap: TileMap = map.get_node("Map/TileMap")
 	#collisions
 	# On va parcourir les cases autour du joueur
 	for x in range( int((self.x)/tc)-2 , int((self.x)/tc)+2 ):
 		for y in range( int((self.y)/tc)-2 , int((self.y)/tc)+2 ):
-			if x >= 0 and x < map.tx and y >= 0 and y < map.ty:
+			if true:
 				# On teste la collision
 				var col:Dictionary = square_col(self.x, self.y, self.t, self.t, x*tc, y*tc, tc, tc)
 				# S'il n'y a pas de collision, on passe à la case suivante
@@ -80,51 +118,50 @@ func collisions() -> void:
 					continue
 				#
 				# Sinon il y a une collision
-				if map.map[y][x]==0 and Global.difficulty>0: self.life=0
-				elif (map.map[y][x]==0 and Global.difficulty==0) or map.map[y][x]==2:
-					print(col["side"])
+				if tilemap.get_cell(x, y)==0 and Global.difficulty>0: self.life=0
+				elif (tilemap.get_cell(x, y)==0 and Global.difficulty==0) or tilemap.get_cell(x, y)==2:
 					if col["side"] == "right":
-						self.x = x * tc - self.t 
+						self.x = x * tc - self.t - rebondit_cols
 						self.speed_x = 0
 					elif col["side"] == "left":
-						self.x = ( x + 1 ) * tc
+						self.x = ( x + 1 ) * tc + rebondit_cols
 						self.speed_x = 0
 					if col["side"] == "bottom":
-						self.y = y * tc - self.t
+						self.y = y * tc - self.t - rebondit_cols
 						self.speed_y = 0
 					elif col["side"] == "top":
-						self.y = ( y + 1 ) * tc
+						self.y = ( y + 1 ) * tc + rebondit_cols
 						self.speed_y = 0
 					elif col["side"] == "top-left":
 						if (x+1) * tc - self.x <= (y + 1) * tc - self.y:
-							self.x = ( x + 1 ) * tc
+							self.x = ( x + 1 ) * tc + rebondit_cols
 							self.speed_x = 0
 						else:
-							self.y = ( y + 1 ) * tc
+							self.y = ( y + 1 ) * tc + rebondit_cols
 							self.speed_y = 0
 					elif col["side"] == "top-right":
 						if (self.x + self.t) - x * tc <= (y + 1) * tc - self.y:
-							self.x = x * tc - self.t - 1 
+							self.x = x * tc - self.t - rebondit_cols
 							self.speed_x = 0
 						else:
-							self.y = ( y + 1 ) * tc
+							self.y = ( y + 1 ) * tc + rebondit_cols
 							self.speed_y = 0
 					elif col["side"] == "bottom-right":
 						if (self.x + self.t) - x * tc <= (self.y + self.t) - y * tc:
-							self.x = x * tc - self.t - 1 
+							self.x = x * tc - self.t - rebondit_cols 
 							self.speed_x = 0
 						else:
-							self.y = y * tc - self.t
+							self.y = y * tc - self.t - rebondit_cols
 							self.speed_y = 0
 					elif col["side"] == "bottom-left":
 						if (x + 1) * tc - self.x <= (self.y + self.t) - y * tc:
-							self.x = ( x + 1 ) * tc
+							self.x = ( x + 1 ) * tc + rebondit_cols
 							self.speed_x = 0
 						else:
-							self.y = y * tc - self.t
+							self.y = y * tc - self.t - rebondit_cols
 							self.speed_y = 0
 
-				if map.map[y][x] == 2 and map.p1: self.life -= 50
+				if tilemap.get_cell(x, y) == 2 and map.p1: self.life -= 50
 				if map.fin == [x,y]:
 					Global.level_fini()
 	
@@ -132,7 +169,8 @@ func collisions() -> void:
 		if square_col(self.x, self.y, self.t, self.t, key.x, key.y, key.t, key.t):
 			self.catched_keys.append( key )
 			Global.keys.erase(key)
-			
+	
+	"""
 	if Global.difficulty > 0:
 		if self.x < 0:
 			self.life = 0
@@ -151,3 +189,4 @@ func collisions() -> void:
 		elif self.x + self.t > map.tx * tc: self.x = map.tx * tc - self.t
 		if self.y < 0: self.y = 0
 		elif self.y + self.t > map.ty*tc: self.y = map.ty * tc - self.t
+	"""

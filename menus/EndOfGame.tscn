@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://res/ui/money.png" type="Texture" id=2]
+[ext_resource path="res://menus/EndOfGame.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="EndOfGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 317.0
+margin_top = 132.0
+margin_right = 707.0
+margin_bottom = 467.0
+custom_constants/separation = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 60.0
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_right = 390.0
+margin_bottom = 60.0
+custom_fonts/font = SubResource( 1 )
+text = "End of the game"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 390.0
+margin_bottom = 140.0
+
+[node name="Died Floor" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+margin_left = 71.0
+margin_right = 318.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+text = "You died at floor 0"
+align = 1
+valign = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 190.0
+margin_right = 390.0
+margin_bottom = 230.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer3"]
+margin_left = 93.0
+margin_right = 297.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+
+[node name="Money" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
+margin_top = 3.0
+margin_right = 154.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 3 )
+text = "You get : 0"
+align = 2
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
+margin_left = 164.0
+margin_right = 204.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 390.0
+margin_bottom = 335.0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4"]
+margin_left = 145.0
+margin_right = 245.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 100, 55 )
+custom_fonts/font = SubResource( 4 )
+text = "Menu"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/Button" to="." method="_on_Button_pressed"]

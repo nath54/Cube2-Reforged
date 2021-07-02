@@ -12,7 +12,7 @@ var fin: Node = null
 # 4: hardcore
 
 var mode = "arcade"
-var difficulty: int = 0
+var difficulty: int = 3
 var stage: int = 1
 var keys: Array = []
 
@@ -20,3 +20,7 @@ func level_fini():
 	if mode == "arcade":
 		stage += 1
 		scenes.change_scene("res://game/arcade/TopDownClassic.tscn")
+
+func lose_game():
+	print("#TODO")
+	print("You lose...")
