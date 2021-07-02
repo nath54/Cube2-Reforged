@@ -1,0 +1,127 @@
+extends Node2D
+
+var x: float = 0
+var y: float = 0
+var t: float = 50
+
+var max_life: int = 100
+var life: int = max_life
+
+var speed_x: float = 0
+var speed_y: float = 0
+
+var max_speed: float = 100
+var acceleration: float = 10
+var decceleration: float = 0.99
+
+var catched_keys: Array = []
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Global.player = self
+
+func movement(delta: float) -> void:
+	if Input.is_action_pressed("up"):
+		speed_y -= acceleration * delta
+	elif Input.is_action_pressed("down"):
+		speed_y += acceleration * delta
+	elif Input.is_action_pressed("left"):
+		speed_x -= acceleration * delta
+	elif Input.is_action_pressed("right"):
+		speed_x += acceleration * delta
+	#
+	speed_x = clamp(speed_x, -max_speed, max_speed)
+	speed_y = clamp(speed_y, -max_speed, max_speed)
+	#
+	speed_x *= decceleration
+	speed_y *= decceleration
+
+func _process(delta: float):
+	movement(delta)
+	x += speed_x
+	y += speed_y
+	collisions()
+	position = Vector2(x, y);
+
+
+func square_col(x1:float, y1:float, tx1:float, ty1:float, x2:float, y2:float, tx2:float, ty2:float) -> Dictionary:
+	if x1 <= x2 and x1+tx1 >= x2 and y1>=y2 and y1+ty1<=y2+ty2:
+		return {"collision": true, "side": "right"}
+	elif x1+tx1 >= x2+tx2 and x1 <= x2+tx2 and y1>=y2 and y1+ty1<=y2+ty2:
+		return {"collision": true, "side": "left"}
+	elif y1 <= y2 and y1+ty1 >= y2 and x1>=x2 and x1+tx1<=x2+tx2:
+		return {"collision": true, "side": "bottom"}
+	elif y1+ty1 >= y2+ty2 and y1 <= y2+ty2 and x1>=x2 and x1+tx1<=x2+tx2:
+		return {"collision": true, "side": "top"}
+	elif x1 <= x2 and x1+tx1 >= x2 and y1+ty1 >= y2+ty2 and y1 <= y2+ty2:
+		return {"collision": true, "side": "top-right"}
+	elif x1 <= x2 and x1+tx1 >= x2 and y1 <= y2 and y1+ty1 >= y2:
+		return {"collision": true, "side": "bottom-right"}
+	elif x1+tx1 >= x2+tx2 and x1 <= x2+tx2 and y1 <= y2 and y1+ty1 >= y2:
+		return {"collision": true, "side": "bottom-left"}
+	elif x1+tx1 >= x2+tx2 and x1 <= x2+tx2 and y1+ty1 >= y2+ty2 and y1 <= y2+ty2:
+		return {"collision": true, "side": "top-left"}
+	elif x1 >= x2 and y1 >= y2 and x1+tx1 <= x2+tx2 and y1+ty1 <= y2+ty2:
+		return {"collision": true, "side": "inside"}
+	return {"collision": false, "side": null}
+
+func collisions() -> void:
+	var tc: int = Global.level.tc
+	var map: Node = Global.level
+	#collisions
+	# On va parcourir les cases autour du joueur
+	for x in range( int((self.x)/tc)-2 , int((self.x)/tc)+2 ):
+		for y in range( int((self.y)/tc)-2 , int((self.y)/tc)+2 ):
+			if x >= 0 and x < map.tx and y >= 0 and y < map.ty:
+				# On teste la collision
+				var col:Dictionary = square_col(self.x, self.y, self.t, self.t, x*tc, y*tc, tc, tc)
+				# S'il n'y a pas de collision, on passe à la case suivante
+				if not col["collision"]:
+					continue
+				#
+				# Sinon il y a une collision
+				if map.map[y][x]==0 and Global.difficulty>0: self.life=0
+				elif (map.map[y][x]==0 and Global.difficulty==0) or map.map[y][x]==2:
+					print(col["side"])
+					if col["side"] == "right":
+						self.x = x * tc - self.t - 1 
+						self.speed_x = 0
+					elif col["side"] == "left":
+						self.speed_x = 0
+						self.x = ( x + 1 ) * tc
+					if col["side"] == "bottom":
+						self.y = y * tc - self.t
+						self.speed_y = 0
+					elif col["side"] == "top":
+						self.y = ( y + 1 ) * tc
+						self.speed_y = 0
+					elif col["side"] == "top-left":
+						if abs(x*tc-(self.x)) >= abs(y*tc-self.y):
+							pass
+				if map.map[y][x] == 2 and map.p1: self.life -= 50
+				if map.fin == [x,y]:
+					Global.level_fini()
+	
+	for key in Global.keys:
+		if square_col(self.x, self.y, self.t, self.t, key.x, key.y, key.t, key.t):
+			self.catched_keys.append( key )
+			Global.keys.erase(key)
+			
+	if Global.difficulty > 0:
+		if self.x < 0:
+			self.life = 0
+			self.x = 0
+		if self.x + self.t > map.tx * tc:
+			self.life = 0
+			self.x = map.tx * tc - self.t
+		if self.y < 0:
+			self.life = 0
+			self.y = 0
+		if self.y + self.t > map.ty * tc:
+			self.life = 0
+			self.y = map.ty * tc - self.t
+	else:
+		if self.x < 0: self.x = 0
+		elif self.x + self.t > map.tx * tc: self.x = map.tx * tc - self.t
+		if self.y < 0: self.y = 0
+		elif self.y + self.t > map.ty*tc: self.y = map.ty * tc - self.t

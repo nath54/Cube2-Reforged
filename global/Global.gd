@@ -1,7 +1,8 @@
 extends Node
 
-var scenes = self
-var player = null
+var scenes: Node = null
+var player: Node = null
+var level: Node = null
 
 # 0: très facile
 # 1: facile
@@ -9,7 +10,12 @@ var player = null
 # 3: difficile
 # 4: hardcore
 
-var difficulty = 0
-var etage = 1
+var mode = "arcade"
+var difficulty: int = 0
+var stage: int = 1
+var keys: Array = []
 
-
+func level_fini():
+	if mode == "arcade":
+		stage += 1
+		scenes.change_scene("res://game/arcade/TopDownClassic.tscn")

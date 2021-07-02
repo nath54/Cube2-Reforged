@@ -16,4 +16,4 @@ func change_scene(path):
 	
 
 func _process(delta):
-	$Interface/fps.text = str(Engine.get_frames_per_second())
+	$Interface/Interface/fps.text = str(Engine.get_frames_per_second())

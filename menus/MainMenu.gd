@@ -15,8 +15,8 @@ func _on_MainMenu_resized():
 ######################## BUTTONS ########################
 
 func _on_BtPlay_pressed():
-	Global.scenes.change_scene("res://menus/Play.tscn")
-
+	# Global.scenes.change_scene("res://menus/Play.tscn")
+	Global.scenes.change_scene("res://game/arcade/TopDownClassic.tscn")
 
 func _on_BtSkins_pressed():
 	Global.scenes.change_scene("res://menus/Skins.tscn")
