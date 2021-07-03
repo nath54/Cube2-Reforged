@@ -7,12 +7,13 @@ func _ready():
 	Global.fin = self
 	set_theme(Global.theme)
 
-func set_theme(theme:int):
+func set_theme(theme:int) -> void:
+	return
 	get_node(str(theme_actu)).visible = false
 	get_node(str(theme)).visible = true
 	theme_actu = theme
 
-func set_scellee(est_scellee:bool):
+func set_scellee(est_scellee:bool) -> void:
 	self.est_scellee = est_scellee
 	"""
 	if est_scellee:

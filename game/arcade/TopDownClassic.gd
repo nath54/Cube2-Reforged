@@ -64,14 +64,21 @@ func generate() -> void:
 	fin = fins[rng.randi_range(0, len(fins)-1)]
 	$Items/Fin.position = Vector2(fin[0]*tc, fin[1]*tc)
 	#
-	Global.player.spawn_x = deb[0] * tc + Global.player.t / 4
-	Global.player.spawn_y = deb[1] * tc + Global.player.t / 4
+	Global.player.spawn_x = deb[0] * tc + (tc-Global.player.t) / 2
+	Global.player.spawn_y = deb[1] * tc + (tc-Global.player.t) / 2
 	Global.player.x = deb[0] * tc + Global.player.t / 3
 	Global.player.y = deb[1] * tc + Global.player.t / 3
+	Global.player.position = Vector2(Global.player.x, Global.player.y)
 	#
 	
 func _ready():
 	Global.level = self
+	#
+	Global.scenes.get_node("Interface/Interface/VBoxContainer/floor").visible = true
+	Global.scenes.get_node("Interface/Interface/VBoxContainer/dead").visible = true
+	
+	Global.scenes.get_node("Interface/Interface/VBoxContainer/floor").text = "floor "+str(Global.stage)
+	Global.scenes.get_node("Interface/Interface/VBoxContainer/dead").text = "dead 0x"
 	generate()
 	#
 	while Global.player.square_col(Global.player.x, Global.player.y, Global.player.t, Global.player.t, fin[0]*tc, fin[1]*tc, tc, tc)["collision"]:

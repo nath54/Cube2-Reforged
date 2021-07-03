@@ -6,6 +6,9 @@ func _ready():
 
 
 func change_scene(path):
+	# On nettoie l'interface
+	$Interface/Interface/VBoxContainer/floor.visible = false
+	$Interface/Interface/VBoxContainer/dead.visible = false
 	# On détruit l'anciene scene
 	for c in $Root.get_children():
 		c.queue_free()
@@ -16,4 +19,4 @@ func change_scene(path):
 	
 
 func _process(delta):
-	$Interface/Interface/fps.text = str(Engine.get_frames_per_second())
+	$Interface/Interface/VBoxContainer/fps.text = str(Engine.get_frames_per_second())

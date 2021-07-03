@@ -15,13 +15,13 @@ var fin: Node = null
 
 var theme = 2
 var mode = "arcade"
-var difficulty: int = 1
+var difficulty: int = 0
 var stage: int = 1
 var keys: Array = []
 
-var skin: int = 6
+var skin: int = 10
 
-var joy_method: int = 2
+var joy_method: int = 1
 var joystick: Vector2 = Vector2.ZERO
 var deadzone: float = 40
 

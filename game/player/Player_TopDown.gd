@@ -9,6 +9,7 @@ var t: float = 50
 
 var max_life: int = 100
 var life: int = max_life
+var count_dead: int = 0
 
 var speed_x: float = 0
 var speed_y: float = 0
@@ -53,15 +54,21 @@ func _ready():
 	
 
 func movement(delta: float) -> void:
+	var f = true
 	if Input.is_action_pressed("up") or Global.joystick.y <= -Global.deadzone:
 		speed_y -= acceleration * delta
-	elif Input.is_action_pressed("down") or Global.joystick.y >= Global.deadzone:
+		f = false
+	if Input.is_action_pressed("down") or Global.joystick.y >= Global.deadzone:
 		speed_y += acceleration * delta
-	elif Input.is_action_pressed("left") or Global.joystick.x <= -Global.deadzone:
+		f = false
+	if Input.is_action_pressed("left") or Global.joystick.x <= -Global.deadzone:
 		speed_x -= acceleration * delta
-	elif Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
+		f = false
+	if Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
 		speed_x += acceleration * delta
-	else:
+		f = false
+	#
+	if f:
 		speed_x *= decceleration
 		speed_y *= decceleration
 	#
@@ -87,6 +94,9 @@ func test_life() -> void:
 		y = spawn_y
 		speed_x = 0
 		speed_y = 0
+		count_dead += 1
+		
+	Global.scenes.get_node("Interface/Interface/VBoxContainer/dead").text = "dead "+str(count_dead)+"x"
 
 func square_col(x1:float, y1:float, tx1:float, ty1:float, x2:float, y2:float, tx2:float, ty2:float) -> Dictionary:
 	if x1 <= x2 and x1+tx1 >= x2 and y1>=y2 and y1+ty1<=y2+ty2:

@@ -79,50 +79,17 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="GridContainer" type="GridContainer" parent="VSplitContainer/CenterContainer"]
-margin_left = 147.0
-margin_top = 137.0
-margin_right = 877.0
+margin_left = 77.0
+margin_top = 136.0
+margin_right = 947.0
 margin_bottom = 391.0
 custom_constants/vseparation = 50
 custom_constants/hseparation = 50
 columns = 3
 
-[node name="MainDev" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_right = 210.0
-margin_bottom = 120.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
-margin_right = 210.0
-margin_bottom = 69.0
-custom_fonts/font = SubResource( 4 )
-text = "Main Development"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
-margin_top = 73.0
-margin_right = 210.0
-margin_bottom = 83.0
-rect_min_size = Vector2( 0, 10 )
-custom_styles/separator = SubResource( 5 )
-
-[node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/MainDev"]
-margin_top = 87.0
-margin_right = 210.0
-margin_bottom = 120.0
-custom_fonts/font = SubResource( 4 )
-text = "Cerisara Nathan"
-align = 1
-valign = 1
-
 [node name="Dev" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_left = 260.0
-margin_right = 470.0
-margin_bottom = 120.0
+margin_right = 210.0
+margin_bottom = 121.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -152,9 +119,9 @@ align = 1
 valign = 1
 
 [node name="Story" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_left = 520.0
-margin_right = 730.0
-margin_bottom = 120.0
+margin_left = 260.0
+margin_right = 470.0
+margin_bottom = 121.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -184,15 +151,15 @@ align = 1
 valign = 1
 
 [node name="Arts" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_top = 170.0
-margin_right = 210.0
-margin_bottom = 254.0
+margin_left = 520.0
+margin_right = 870.0
+margin_bottom = 121.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Titre" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
-margin_right = 210.0
+margin_right = 350.0
 margin_bottom = 33.0
 custom_fonts/font = SubResource( 4 )
 text = "Arts"
@@ -201,25 +168,33 @@ valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
 margin_top = 37.0
-margin_right = 210.0
+margin_right = 350.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 0, 10 )
 custom_styles/separator = SubResource( 5 )
 
 [node name="N1" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
 margin_top = 51.0
-margin_right = 210.0
+margin_right = 350.0
 margin_bottom = 84.0
 custom_fonts/font = SubResource( 4 )
 text = "Cerisara Nathan"
 align = 1
 valign = 1
 
+[node name="N2" type="Label" parent="VSplitContainer/CenterContainer/GridContainer/Arts"]
+margin_top = 88.0
+margin_right = 350.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 4 )
+text = "thatguynm (open game art)"
+align = 1
+valign = 1
+
 [node name="Music" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_left = 260.0
-margin_top = 170.0
-margin_right = 470.0
-margin_bottom = 254.0
+margin_top = 171.0
+margin_right = 210.0
+margin_bottom = 255.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -249,10 +224,10 @@ align = 1
 valign = 1
 
 [node name="Sfx" type="VBoxContainer" parent="VSplitContainer/CenterContainer/GridContainer"]
-margin_left = 520.0
-margin_top = 170.0
-margin_right = 730.0
-margin_bottom = 254.0
+margin_left = 260.0
+margin_top = 171.0
+margin_right = 470.0
+margin_bottom = 255.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
