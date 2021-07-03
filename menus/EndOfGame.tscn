@@ -99,11 +99,25 @@ margin_top = 280.0
 margin_right = 390.0
 margin_bottom = 335.0
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4"]
-margin_left = 145.0
-margin_right = 245.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer4"]
+margin_left = 70.0
+margin_right = 320.0
+margin_bottom = 55.0
+custom_constants/separation = 50
+
+[node name="BtMenu" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4/HBoxContainer"]
+margin_right = 100.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 100, 55 )
 custom_fonts/font = SubResource( 4 )
 text = "Menu"
-[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/Button" to="." method="_on_Button_pressed"]
+
+[node name="BtRetry" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer4/HBoxContainer"]
+margin_left = 150.0
+margin_right = 250.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 100, 55 )
+custom_fonts/font = SubResource( 4 )
+text = "Retry"
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/HBoxContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer4/HBoxContainer/BtRetry" to="." method="_on_BtRetry_pressed"]

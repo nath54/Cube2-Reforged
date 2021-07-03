@@ -14,44 +14,45 @@ var timer:Timer = Timer.new()
 var time_max: float = 0
 var wait_time: float = 0
 
+var min_x = null
+var min_y = null
+var max_x = null
+var max_y = null
+
+onready var progressStyleBox = $CanvasLayer/Control/ProgressBar.get("custom_styles/fg")
+var lance: bool = false
 # map : 0 = mur, 1 = sol, 2 = mur non mortel
 
 func generate() -> void:
+	rng.randomize()
+	$Map/TileMap.clear()
 	if Global.difficulty == 0:
-		time_max = 120 + 2 * Global.stage # En secondes
+		time_max = 120 + 0.1 * Global.stage # En secondes
 	elif Global.difficulty == 1:
-		time_max = 100 + 2 * Global.stage # En secondes
+		time_max = 100 + 0.1 * Global.stage # En secondes
 	elif Global.difficulty == 2:
-		time_max = 80 + 2 * Global.stage # En secondes
+		time_max = 80 + 0.1 * Global.stage # En secondes
 	elif Global.difficulty == 3:
-		time_max = 70 + 2 * Global.stage # En secondes
+		time_max = 70 + 0.1 * Global.stage # En secondes
 	elif Global.difficulty == 4:
-		time_max = 60 + 2 * Global.stage # En secondes
-	wait_time = time_max
+		time_max = 60 + 0.1 * Global.stage # En secondes
 	#
 	tx=50+5*Global.difficulty+int(5*log(Global.stage))
 	ty=50+5*Global.difficulty+int(5*log(Global.stage))
 	#
-	"""
-	for y in range(tx):
-		map.append([])
-		for x in range(ty):
-			map[y].append(-1) # -1 = vide
-			# $Map/TileMap.set_cell(x, y, 0)
-	"""
-	#
 	deb = [rng.randi_range( int(tx/3), int(tx/3*2)), rng.randi_range( int(ty/3), int(ty/3*2))]
-	# map[deb[1]][deb[0]] = 1 # sol
 	var fins:Array = []
 	#
 	for b in range(Global.difficulty+2): # Plus la difficulté est grande, plus il y aura de branches
 		chem = deb
-		var ra = 100*(Global.difficulty+1)+int(5*log(Global.stage))
-		var rb = 110*(Global.difficulty+1)+int(10*log(Global.stage))
+		var ra = 100+10*(Global.difficulty+1)+int(5*log(Global.stage))
+		var rb = 150+10*(Global.difficulty+1)+int(10*log(Global.stage))
 		for n in range(rng.randi_range(ra, rb)):
 			chem[rng.randi_range(0, 1)] += [-1, 1][rng.randi_range(0, 1)]
-			# chem = [clamp(chem[0], 0, tx-1), clamp(chem[1], 0, ty-1)]
-			# map[chem[1]][chem[0]] = 1 # 1 = sol
+			if min_x == null or chem[0] < min_x: min_x = chem[0]
+			if max_x == null or chem[0] > max_x: max_x = chem[0]
+			if min_y == null or chem[1] < min_y: min_y = chem[1]
+			if max_y == null or chem[1] > max_y: max_y = chem[1]
 			$Map/TileMap.set_cell(chem[0], chem[1], 1)
 			for xx in range(-1, 2):
 				for yy in range(-1, 2):
@@ -59,30 +60,49 @@ func generate() -> void:
 					var y:int = chem[1]+yy
 					if $Map/TileMap.get_cell(x, y) != 1:
 						$Map/TileMap.set_cell(x, y, 0)
-						# map[y][x] = 0 # 0 = vide
 		fins.append([chem[0], chem[1]])
 	fin = fins[rng.randi_range(0, len(fins)-1)]
 	$Items/Fin.position = Vector2(fin[0]*tc, fin[1]*tc)
 	#
 	Global.player.spawn_x = deb[0] * tc + Global.player.t / 4
 	Global.player.spawn_y = deb[1] * tc + Global.player.t / 4
-	Global.player.x = deb[0] * tc + Global.player.t / 4
-	Global.player.y = deb[1] * tc + Global.player.t / 4
+	Global.player.x = deb[0] * tc + Global.player.t / 3
+	Global.player.y = deb[1] * tc + Global.player.t / 3
 	#
 	
 func _ready():
 	Global.level = self
 	generate()
 	#
-
-func _draw():
-	var cx: int = int(Global.player.x - Global.player.t/2)
-	var cy: int = int(Global.player.y - Global.player.t/2)
-	var ct: float = Global.player.t
-	draw_rect(Rect2(cx, cy, ct, ct), Color(255, 0, 0))
+	while Global.player.square_col(Global.player.x, Global.player.y, Global.player.t, Global.player.t, fin[0]*tc, fin[1]*tc, tc, tc)["collision"]:
+		generate()
+	wait_time = time_max
+	#
+	$Camera2D.current = true
+	max_x += 2
+	max_y += 2
+	min_x -= 2
+	min_y -= 2
+	$Camera2D.position = Vector2((max_x*tc + min_x*tc)/2.0, (max_y*tc + min_y*tc)/2.0)
+	var zx = (max_x*tc - min_x*tc)/600.0
+	var zy = (max_y*tc - min_y*tc)/600.0
+	var z = max(zx, zy)
+	$Camera2D.zoom = Vector2(z, z)
+	#
+	Global.player.get_node("Camera2D").current = false
+	yield(get_tree().create_timer(3), "timeout")
+	#
+	$CanvasLayer/Control/ProgressBar.visible = true
+	$Camera2D.current = false
+	Global.player.get_node("Camera2D").current = true
+	#
+	lance = true
 
 func _process(delta):
-	$CanvasLayer/Control/ProgressBar.value = 100.0*wait_time/time_max
-	wait_time -= delta
-	if wait_time <= 0:
-		Global.lose_game()
+	if lance:
+		var cl = Color(1.0-wait_time/time_max,1.0*wait_time/time_max,0)
+		progressStyleBox.bg_color = cl
+		$CanvasLayer/Control/ProgressBar.value = 100.0*wait_time/time_max
+		wait_time -= delta
+		if wait_time <= 0:
+			Global.lose_game()

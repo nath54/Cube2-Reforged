@@ -1,6 +1,9 @@
 extends Control
 
 func _ready():
+	#
+	$VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Label.text = str(Global.money)
+	#
 	if rect_size.y >= 700 and rect_size.x <= rect_size.y*1.5:
 		$VSplitContainer/VBoxContainer/CenterContainer2/GridContainer.columns = 3
 	else:
@@ -16,7 +19,7 @@ func _on_MainMenu_resized():
 
 func _on_BtPlay_pressed():
 	# Global.scenes.change_scene("res://menus/Play.tscn")
-	Global.scenes.change_scene("res://game/arcade/TopDownClassic.tscn")
+	Global.scenes.change_scene("res://game/arcade/Arcade.tscn")
 
 func _on_BtSkins_pressed():
 	Global.scenes.change_scene("res://menus/Skins.tscn")

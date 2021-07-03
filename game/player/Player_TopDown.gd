@@ -19,7 +19,9 @@ var decceleration: float = 0.97
 
 var catched_keys: Array = []
 
-var rebondit_cols = 1
+var rebondit_cols:float = 1
+
+var click = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,16 +46,20 @@ func _ready():
 		acceleration = 25
 		decceleration = 0.99
 		max_speed = 50
+	# Set skin
+	$Skin/Skin.queue_free()
+	var skin = load("res://res/skins/"+str(Global.skin)+"/Skin.tscn").instance()
+	$Skin.add_child(skin)
 	
 
 func movement(delta: float) -> void:
-	if Input.is_action_pressed("up"):
+	if Input.is_action_pressed("up") or Global.joystick.y <= -Global.deadzone:
 		speed_y -= acceleration * delta
-	elif Input.is_action_pressed("down"):
+	elif Input.is_action_pressed("down") or Global.joystick.y >= Global.deadzone:
 		speed_y += acceleration * delta
-	elif Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("left") or Global.joystick.x <= -Global.deadzone:
 		speed_x -= acceleration * delta
-	elif Input.is_action_pressed("right"):
+	elif Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
 		speed_x += acceleration * delta
 	else:
 		speed_x *= decceleration
@@ -64,12 +70,13 @@ func movement(delta: float) -> void:
 	#
 
 func _process(delta: float):
-	movement(delta)
-	x += speed_x
-	y += speed_y
-	collisions()
-	test_life()
-	position = Vector2(x, y);
+	if Global.level.lance:
+		movement(delta)
+		x += speed_x
+		y += speed_y
+		collisions()
+		test_life()
+		position = Vector2(x, y);
 
 func test_life() -> void:
 	if life <= 0:
@@ -169,24 +176,31 @@ func collisions() -> void:
 		if square_col(self.x, self.y, self.t, self.t, key.x, key.y, key.t, key.t):
 			self.catched_keys.append( key )
 			Global.keys.erase(key)
-	
-	"""
-	if Global.difficulty > 0:
-		if self.x < 0:
-			self.life = 0
-			self.x = 0
-		if self.x + self.t > map.tx * tc:
-			self.life = 0
-			self.x = map.tx * tc - self.t
-		if self.y < 0:
-			self.life = 0
-			self.y = 0
-		if self.y + self.t > map.ty * tc:
-			self.life = 0
-			self.y = map.ty * tc - self.t
-	else:
-		if self.x < 0: self.x = 0
-		elif self.x + self.t > map.tx * tc: self.x = map.tx * tc - self.t
-		if self.y < 0: self.y = 0
-		elif self.y + self.t > map.ty*tc: self.y = map.ty * tc - self.t
-	"""
+
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			if click == null:
+				click = event.position
+		else:
+			click = null
+			Global.joystick = Vector2.ZERO
+	elif event is InputEventScreenDrag:
+		if click != null:
+			var d:Vector2 = event.position - click
+			# Methode 1 :
+			if Global.joy_method == 1:
+				if abs(d.x) >= abs(d.y):
+					if d.x <= -Global.deadzone:
+						Global.joystick.x = d.x
+					elif d.x >= Global.deadzone:
+						Global.joystick.x = d.x
+				elif abs(d.x) < abs(d.y):
+					if d.y <= -Global.deadzone:
+						Global.joystick.y = d.y
+					elif d.y >= Global.deadzone:
+						Global.joystick.y = d.y
+			elif Global.joy_method == 2:
+				Global.joystick = d
+		else:
+			Global.joystick = Vector2.ZERO

@@ -1,0 +1,28 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://res/skins/15/skin15-1.png" type="Texture" id=1]
+[ext_resource path="res://res/skins/15/skin15-13.png" type="Texture" id=2]
+[ext_resource path="res://res/skins/15/skin15-9.png" type="Texture" id=3]
+[ext_resource path="res://res/skins/15/skin15-12.png" type="Texture" id=4]
+[ext_resource path="res://res/skins/15/skin15-2.png" type="Texture" id=5]
+[ext_resource path="res://res/skins/15/skin15-10.png" type="Texture" id=6]
+[ext_resource path="res://res/skins/15/skin15-11.png" type="Texture" id=7]
+[ext_resource path="res://res/skins/15/skin15-5.png" type="Texture" id=8]
+[ext_resource path="res://res/skins/15/skin15-7.png" type="Texture" id=9]
+[ext_resource path="res://res/skins/15/skin15-4.png" type="Texture" id=10]
+[ext_resource path="res://res/skins/15/skin15-3.png" type="Texture" id=11]
+[ext_resource path="res://res/skins/15/skin15-8.png" type="Texture" id=12]
+[ext_resource path="res://res/skins/15/skin15-6.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[node name="Skin" type="AnimatedSprite"]
+frames = SubResource( 1 )
+frame = 7
+playing = true
