@@ -1,31 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://menus/settings/GeneralSettings.gd" type="Script" id=1]
+[ext_resource path="res://menus/settings/LanguagesSettings.gd" type="Script" id=1]
 [ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
 
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 60
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.219608, 0.215686, 0.215686, 1 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
 font_data = ExtResource( 2 )
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -59,7 +47,7 @@ margin_top = 12.0
 margin_right = 87.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 75, 45 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Back"
 
 [node name="Label" type="Label" parent="VSplitContainer/HBoxContainer"]
@@ -67,42 +55,13 @@ margin_left = 112.0
 margin_top = 5.0
 margin_right = 1020.0
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 3 )
-text = "General Settings"
+custom_fonts/font = SubResource( 2 )
+text = "Languages Settings"
 align = 1
 valign = 1
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="VSplitContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VSplitContainer"]
 margin_top = 82.0
 margin_right = 1020.0
 margin_bottom = 575.0
-
-[node name="Difficulty" type="HBoxContainer" parent="VSplitContainer/HBoxContainer2"]
-margin_right = 1020.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 1020, 25 )
-
-[node name="Label" type="Label" parent="VSplitContainer/HBoxContainer2/Difficulty"]
-margin_right = 190.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 190, 35 )
-custom_fonts/font = SubResource( 4 )
-text = "Difficulty : "
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MenuButton" type="MenuButton" parent="VSplitContainer/HBoxContainer2/Difficulty"]
-margin_left = 194.0
-margin_right = 294.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 100, 10 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-text = "Normal"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="pressed" from="VSplitContainer/HBoxContainer/CenterContainer/BtBack" to="." method="_on_BtBack_pressed"]

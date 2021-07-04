@@ -25,6 +25,7 @@ script = ExtResource( 2 )
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,6 +33,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="Loading"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,6 +42,7 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="Loading"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,6 +57,7 @@ text = "Loading..."
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 10
+follow_viewport_enable = true
 
 [node name="Interface" type="Control" parent="Interface"]
 anchor_right = 1.0
@@ -68,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 10.0
 margin_right = -10.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

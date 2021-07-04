@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/Settings.gd" type="Script" id=1]
 [ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://res/styles/BtSettingsHover.tres" type="StyleBox" id=3]
+[ext_resource path="res://res/styles/BtSettingsNormal.tres" type="StyleBox" id=4]
+[ext_resource path="res://res/styles/BtSettingsPressed.tres" type="StyleBox" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -9,6 +12,12 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
 [node name="Settings" type="Control"]
@@ -43,6 +52,7 @@ margin_top = 12.0
 margin_right = 87.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 75, 45 )
+mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 text = "Menu"
 
@@ -56,8 +66,96 @@ text = "Settings"
 align = 1
 valign = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VSplitContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer"]
 margin_top = 82.0
 margin_right = 1024.0
 margin_bottom = 600.0
+
+[node name="HBoxContainer2" type="GridContainer" parent="VSplitContainer/CenterContainer"]
+margin_left = 267.0
+margin_top = 104.0
+margin_right = 757.0
+margin_bottom = 414.0
+custom_constants/vseparation = 50
+custom_constants/hseparation = 50
+columns = 3
+
+[node name="BtGeneral" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_right = 130.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "General"
+
+[node name="BtAudio" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_left = 180.0
+margin_right = 310.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Audio"
+
+[node name="BtGraphics" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_left = 360.0
+margin_right = 490.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Video"
+
+[node name="BtControls" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_top = 180.0
+margin_right = 130.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Controls"
+
+[node name="BtLanguage" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_left = 180.0
+margin_top = 180.0
+margin_right = 310.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Language"
+
+[node name="BtGameData" type="Button" parent="VSplitContainer/CenterContainer/HBoxContainer2"]
+margin_left = 360.0
+margin_top = 180.0
+margin_right = 490.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 130, 130 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Game Data"
 [connection signal="pressed" from="VSplitContainer/HBoxContainer/CenterContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtGeneral" to="." method="_on_BtGeneral_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtAudio" to="." method="_on_BtAudio_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtGraphics" to="." method="_on_BtGraphics_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtControls" to="." method="_on_BtControls_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtLanguage" to="." method="_on_BtLanguage_pressed"]
+[connection signal="pressed" from="VSplitContainer/CenterContainer/HBoxContainer2/BtGameData" to="." method="_on_BtGameData_pressed"]
