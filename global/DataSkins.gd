@@ -31,12 +31,12 @@ var skins = {
 	16: {"nom": "thrusted", "rar": 3}, # vehicle
 	17: {"nom": "space ship", "rar": 4}, # vehicle
 	18: {"nom": "germany", "rar": 1}, # country
-	19: {"nom": "austria", "rar": 1},
-	20: {"nom": "armenia", "rar": 1},
-	21: {"nom": "bolivia", "rar": 1},
-	22: {"nom": "bulgaria", "rar": 1},
-	23: {"nom": "colombia", "rar": 1},
-	24: {"nom": "estonia", "rar": 1},
+	19: {"nom": "austria", "rar": 1}, # country
+	20: {"nom": "armenia", "rar": 1}, # country
+	21: {"nom": "bolivia", "rar": 1}, # country
+	22: {"nom": "bulgaria", "rar": 1}, # country
+	23: {"nom": "colombia", "rar": 1}, # country
+	24: {"nom": "estonia", "rar": 1}, # country
 	25: {"nom": "gabon", "rar": 1}, # country
 	26: {"nom": "hongria", "rar": 1}, # country
 	27: {"nom": "lituania", "rar": 1}, # country
@@ -52,43 +52,43 @@ var skins = {
 	37: {"nom": "mali", "rar": 1}, # country
 	38: {"nom": "nigeria", "rar": 1}, # country
 	39: {"nom": "peru", "rar": 1}, # country
-	40: {"nom": "", "rar": 1}, # country
-	41: {"nom": "", "rar": 1}, # country
-	42: {"nom": "", "rar": 1}, # country
-	43: {"nom": "", "rar": 1}, # country
-	44: {"nom": "", "rar": 1}, # country
-	45: {"nom": "", "rar": 1}, # country
-	46: {"nom": "", "rar": 1}, # country
-	47: {"nom": "", "rar": 1}, # country
-	48: {"nom": "", "rar": 1}, # country
-	49: {"nom": "", "rar": 1}, # country
-	50: {"nom": "", "rar": 1}, # country
-	51: {"nom": "", "rar": 1}, # country
-	52: {"nom": "", "rar": 1}, # country
-	53: {"nom": "", "rar": 1}, # country
-	54: {"nom": "", "rar": 1}, # country
-	55: {"nom": "", "rar": 1}, # country
-	56: {"nom": "", "rar": 1}, # country
-	57: {"nom": "", "rar": 1}, # country
-	58: {"nom": "", "rar": 1}, # country
-	59: {"nom": "", "rar": 1}, # country
-	60: {"nom": "", "rar": 1}, # country
-	61: {"nom": "", "rar": 1}, # country
-	62: {"nom": "", "rar": 1}, # country
-	63: {"nom": "", "rar": 1}, # country
-	64: {"nom": "", "rar": 1}, # country
-	65: {"nom": "", "rar": 1}, # country
-	66: {"nom": "", "rar": 1}, # country
-	67: {"nom": "", "rar": 1}, # country
-	68: {"nom": "", "rar": 1}, # country
-	69: {"nom": "", "rar": 0},
-	70: {"nom": "", "rar": 0},
-	71: {"nom": "", "rar": 0},
-	72: {"nom": "", "rar": 0},
-	73: {"nom": "", "rar": 0},
-	74: {"nom": "", "rar": 0},
-	75: {"nom": "", "rar": 0},
-	76: {"nom": "", "rar": 0},
+	40: {"nom": "romania", "rar": 1}, # country
+	41: {"nom": "afghanistan", "rar": 1}, # country
+	42: {"nom": "andorra", "rar": 1}, # country
+	43: {"nom": "cameroon", "rar": 1}, # country
+	44: {"nom": "guatemala", "rar": 1}, # country
+	45: {"nom": "mexico", "rar": 1}, # country
+	46: {"nom": "moldavia", "rar": 1}, # country
+	47: {"nom": "senegal", "rar": 1}, # country
+	48: {"nom": "brazil", "rar": 1}, # country
+	49: {"nom": "algeria", "rar": 1}, # country
+	50: {"nom": "angola", "rar": 1}, # country
+	51: {"nom": "malta", "rar": 1}, # country
+	52: {"nom": "monaco", "rar": 1}, # country
+	53: {"nom": "poland", "rar": 1}, # country
+	54: {"nom": "burkina faso", "rar": 1}, # country
+	55: {"nom": "algeria", "rar": 1}, # country
+	56: {"nom": "porugal", "rar": 1}, # country
+	57: {"nom": "usa", "rar": 1}, # country
+	58: {"nom": "san marino", "rar": 1}, # country
+	59: {"nom": "ukraine", "rar": 1}, # country
+	60: {"nom": "vatican", "rar": 1}, # country
+	61: {"nom": "switzerland", "rar": 1}, # country
+	62: {"nom": "tunisia", "rar": 1}, # country
+	63: {"nom": "japan", "rar": 1}, # country
+	64: {"nom": "albania", "rar": 1}, # country
+	65: {"nom": "bangladesh", "rar": 1}, # country
+	66: {"nom": "south korea", "rar": 1}, # country
+	67: {"nom": "palaos", "rar": 1}, # country
+	68: {"nom": "china", "rar": 1}, # country
+	69: {"nom": "black borders", "rar": 0}, # standard
+	70: {"nom": "crossed", "rar": 0}, # standard
+	71: {"nom": "little square", "rar": 1}, # standard
+	72: {"nom": "little lozenge", "rar": 1}, # standard
+	73: {"nom": "white on black", "rar": 1}, # standard
+	74: {"nom": "blue stripes", "rar": 0}, # standard
+	75: {"nom": "red stripes", "rar": 0}, # standard
+	76: {"nom": "green peaks", "rar": 3}, # standard
 }
 
 
@@ -96,8 +96,8 @@ var skins = {
 # Les collections des skins : 
 
 var collections = {
-	"standard": {"skins": [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 15], "bg": ""},
-	"countries": {"skins": [5, 6], "bg": ""}, # septembre
+	"standard": {"skins": [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 15, 69, 70, 71, 72, 73, 74, 75, 76], "bg": ""},
+	"countries": {"skins": [5, 6, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68], "bg": ""}, # septembre
 	"sports": {"skins": [], "bg": ""}, # juillet
 	"christmas": {"skins": [], "bg": ""}, # décembre
 	"halloween": {"skins": [], "bg": ""}, # octobre
