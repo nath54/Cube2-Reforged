@@ -25,6 +25,8 @@ Global="*res://global/Global.gd"
 Skins="*res://global/Skins.gd"
 Succes="*res://global/Succes.gd"
 Saves="*res://global/Saves.gd"
+DataSB="*res://global/DataSB.gd"
+Invocations="*res://global/Invocations.gd"
 
 [display]
 

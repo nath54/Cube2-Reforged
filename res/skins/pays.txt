@@ -1,9 +1,9 @@
 Afghanistan
 Afrique du Sud
-Albanie
-Algérie
+Albanie  *
+Algérie  *
 Allemagne  *
-Andorre
+Andorre  *
 Angola
 Anguilla
 Antigua-et-Barbuda
@@ -17,9 +17,9 @@ Autriche  *
 Azerbaïdjan
 Bahamas
 Bahreïn
-Bangladesh
+Bangladesh  *
 Barbade
-Belgique
+Belgique  *
 Belize
 Bénin
 Bermudes
@@ -29,7 +29,7 @@ Birmanie (Myanmar)
 Bolivie  *
 Bosnie-Herzégovine
 Botswana
-Brésil
+Brésil  *
 Brunei
 Bulgarie  *
 Burkina Faso
@@ -39,12 +39,12 @@ Cameroun
 Canada
 Cap-vert
 Chili
-Chine
+Chine  *
 Chypre
 Colombie  *
 Comores
 Corée du Nord
-Corée du Sud
+Corée du Sud  *
 Costa Rica
 Côte d'Ivoire
 Croatie
@@ -60,7 +60,7 @@ Arabes Unis
 Espagne
 Estonie  *
 États Fédérés de Micronésie
-États-Unis
+États-Unis  *
 Éthiopie
 Fidji
 Finlande
@@ -106,12 +106,12 @@ Inde
 Indonésie
 Iran
 Iraq
-Irlande
+Irlande  *
 Islande
 Israël
-Italie
+Italie  *
 Jamaïque
-Japon
+Japon  *
 Jordanie
 Kazakhstan
 Kenya
@@ -119,7 +119,7 @@ Kirghizistan
 Kiribati
 Koweït
 Laos
-Le Vatican
+Le Vatican  *
 Lesotho
 Lettonie
 Liban
@@ -134,15 +134,15 @@ Malaisie
 Malawi
 Maldives
 Mali
-Malte
+Malte  *
 Maroc
 Martinique
 Maurice
 Mauritanie
 Mayotte
-Mexique
+Mexique  *
 Moldavie
-Monaco
+Monaco  *
 Mongolie
 Monténégro
 Montserrat
@@ -152,7 +152,7 @@ Nauru
 Népal
 Nicaragua
 Niger
-Nigéria
+Nigéria  *
 Niué
 Norvège
 Nouvelle-Calédonie
@@ -161,17 +161,17 @@ Oman
 Ouganda
 Ouzbékistan
 Pakistan
-Palaos
+Palaos  *
 Panama
 Papouasie-Nouvelle-Guinée
 Paraguay
 Pays-Bas  *
-Pérou
+Pérou  *
 Philippines
-Pologne
+Pologne  *
 Polynésie Française
 Porto Rico
-Portugal
+Portugal  *
 Qatar
 République Centrafricaine
 République de Macédoine
@@ -182,7 +182,7 @@ République Tchèque
 Réunion
 Roumanie
 Royaume-Uni
-Russie
+Russie  *
 Rwanda
 Saint-Kitts-et-Nevis
 Saint-Marin
@@ -205,7 +205,7 @@ Somalie
 Soudan
 Sri Lanka
 Suède
-Suisse
+Suisse  *
 Suriname
 Svalbard et Jan Mayen
 Swaziland
@@ -220,7 +220,7 @@ Timor Oriental
 Togo
 Tonga
 Trinité-et-Tobago
-Tunisie
+Tunisie  *
 Turkménistan
 Turquie
 Tuvalu
@@ -230,6 +230,6 @@ Vanuatu
 Venezuela
 Viet Nam
 Wallis et Futuna
-Yémen
+Yémen  *
 Zambie
 Zimbabwe

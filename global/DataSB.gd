@@ -1,3 +1,4 @@
+# DATA SKINS AND BANNERS
 extends Node
 
 
@@ -12,7 +13,7 @@ func _ready():
 #  agl[0] : L'angle de rotation de base du skin
 
 # Les données du skin en fonction de leurs id
-var skins = {
+const skins: Dictionary = {
 	1: {"nom": "cube", "rar": 0}, # standard
 	2: {"nom": "little eyes", "rar": 0}, # standard
 	3: {"nom": "black arrow", "rar": 0}, # a changer le nom # standard
@@ -95,7 +96,7 @@ var skins = {
 
 # Les collections des skins : 
 
-var collections = {
+var collections: Dictionary = {
 	"standard": {"skins": [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 15, 69, 70, 71, 72, 73, 74, 75, 76], "bg": ""},
 	"countries": {"skins": [5, 6, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68], "bg": ""}, # septembre
 	"sports": {"skins": [], "bg": ""}, # juillet
@@ -148,58 +149,86 @@ var collections = {
 # Chance d'avoir un rare : 40 %
 # Chance d'avoir un commun : 56 %
 #
-# Cout de 1 voeux : 100 money
-# Cout de 10 voeux : 900 money
+# Cout de 1 voeux : 1000 money
+# Cout de 10 voeux : 9000 money
 
-func trie_collections():
+func trie_collections() -> void:
 	for c in collections.keys():
-		var rars = {0: [], 1: [], 2: [], 3: [], 4: []}
+		var rars: Dictionary = {0: [], 1: [], 2: [], 3: [], 4: []}
 		for s in collections[c]["skins"]:
 			rars[skins[s]["rar"]].append(s)
 		collections[c]["tries_rar"] = rars
 
 
 # Dates des bannières 
-# Clé : "jour/moi"
+# Clé : "moi/jour"
+# Les clés sont en string 
+# car on ne peux pas mettre d'array
+# en tant que clé de dictionnaire
+# De plus, le format moi/jour
+# permet de faire directement une comparaison
+# par ordre alphabétique
 
-var dates = {
-	"1/1": "egypt",
-	"8/1": "vehicles",
-	"14/1": "blobs",
-	"25/1": "middle ages",
-	"4/2": "china",
-	"14/2": "love",
-	"22/2": "japan",
-	"1/3": "hell",
-	"10/3": "masks",
-	"20/3": "food",
-	"30/3": "easter",
-	"9/4": "flowers",
-	"19/4": "space",
-	"29/4": "jobs",
-	"9/5": "technologies",
-	"19/5": "nature",
-	"29/5": "deluxe",
-	"8/6": "fantasy",
-	"18/6": "arts",
-	"28/6": "fruits & vegetables",
-	"8/7": "summer",
-	"18/7": "sports",
-	"28/7": "pirates",
-	"7/8": "smileys",
-	"17/8": null,
-	"27/8": "back to school",
-	"6/9": "countries",
-	"16/9": null,
-	"26/9": "animals",
-	"6/10": "mythology",
-	"16/10": "monuments",
-	"26/10": "halloween",
-	"5/11": null,
-	"15/11": "celebrities",
-	"25/11": null,
-	"2/12": null,
-	"10/12": "anime",
-	"20/12": "christmas",
+const dates = {
+	"01/01": "egypt",
+	"01/08": "vehicles",
+	"01/14": "blobs",
+	"01/25": "middle ages",
+	"02/04": "china",
+	"02/14": "love",
+	"02/22": "japan",
+	"03/01": "hell",
+	"03/10": "masks",
+	"03/20": "food",
+	"03/30": "easter",
+	"04/09": "flowers",
+	"04/19": "space",
+	"04/29": "jobs",
+	"05/09": "technologies",
+	"05/19": "nature",
+	"05/29": "deluxe",
+	"06/08": "fantasy",
+	"06/18": "arts",
+	"06/28": "fruits & vegetables",
+	"07/08": "summer",
+	"07/18": "sports",
+	"07/28": "pirates",
+	"08/07": "smileys",
+	"08/17": null,
+	"08/28": "back to school",
+	"09/06": "countries",
+	"09/16": null,
+	"09/26": "animals",
+	"10/06": "mythology",
+	"10/16": "monuments",
+	"10/26": "halloween",
+	"11/05": null,
+	"11/15": "celebrities",
+	"11/25": null,
+	"12/02": null,
+	"12/10": "anime",
+	"12/20": "christmas",
 }
 
+# Fonction pour récuperer les bannieres limitées
+# en fonction du jour où l'on est
+func get_bans_lim() -> Array:
+	var time = OS.get_dastetime()
+	var str_date: String = str(time["month"]) + "/" + str(time["day"])
+	var index_key: int = 0
+	while index_key < len(dates.keys())-1 and not (str_date >= dates[index_key] and str_date < dates[index_key]):
+		index_key += 1
+	#
+	var limited_bans: Array = []
+	if dates[index_key] is String:
+		limited_bans.append(dates[index_key])
+	elif dates[index_key] is Array:
+		limited_bans += dates[index_key]
+	#
+	return limited_bans
+
+# Fonction pour récuperer la liste des bannières
+func get_bans() -> Array:
+	var limited_bans: Array = get_bans_lim()
+	var bans: Array = ["standard"] + limited_bans
+	return bans 
