@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://res/ui/invos/coffre_1.png" type="Texture" id=1]
+[ext_resource path="res://res/ui/invos/coffre_1_o1.png" type="Texture" id=2]
+[ext_resource path="res://res/ui/invos/bg.png" type="Texture" id=3]
+[ext_resource path="res://res/ui/invos/light_bg.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "ouvre",
+"speed": 5.0
+} ]
+
+[node name="Single" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 461.681, 286.359 )
+texture = ExtResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 490, 290 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+texture_scale = 1.7
+color = Color( 0.360784, 0.0627451, 0.498039, 1 )
+energy = 7.84
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 2
+position = Vector2( 490, 290 )
+scale = Vector2( 3, 3 )
+z_index = 1
+frames = SubResource( 1 )
+animation = "ouvre"

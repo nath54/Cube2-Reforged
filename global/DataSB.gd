@@ -155,7 +155,9 @@ var collections: Dictionary = {
 func trie_collections() -> void:
 	for c in collections.keys():
 		var rars: Dictionary = {0: [], 1: [], 2: [], 3: [], 4: []}
+		print(rars)
 		for s in collections[c]["skins"]:
+			print("aaaaaaaa", skins[s]["rar"], "    ", typeof(skins[s]["rar"]))
 			rars[skins[s]["rar"]].append(s)
 		collections[c]["tries_rar"] = rars
 
