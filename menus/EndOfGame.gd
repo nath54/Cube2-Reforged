@@ -20,7 +20,11 @@ func _ready():
 		else:
 			$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer3/Arcade_Record_Month.text = "Highscore of this month : "+str(Account.arcade_record_month[Global.difficulty])
 		# Calcul des gains
-		var gains:int = Global.stage * (10+randf()*5)
+		var gains:int = 1
+		var g: String = str(Global.stage)
+		for x in range(len(g), 0, -1):
+			gains += (int(g[x-1])) * (x+1)
+		gains *= (5+randf()*5)
 		if Global.difficulty == 1:
 			gains *= 1.2
 		elif Global.difficulty == 2:

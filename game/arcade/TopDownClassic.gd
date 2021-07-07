@@ -120,8 +120,9 @@ func _process(delta):
 func fin():
 	$AnimationPlayer.play("fin")
 	Global.player.fin = true
-	Global.player.speed_x = ((fin[0]*tc) - (Global.player.x-tc/2)) * 2.0 * (1-Global.player.decceleration)
-	Global.player.speed_y = ((fin[1]*tc) - (Global.player.y-tc/2)) * 2.0 * (1-Global.player.decceleration)
+	var a: float = 0.01
+	Global.player.speed_x = ((fin[0]*tc) - (Global.player.x-tc/2)) * a
+	Global.player.speed_y = ((fin[1]*tc) - (Global.player.y-tc/2)) * a
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

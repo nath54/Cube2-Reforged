@@ -70,10 +70,10 @@ func movement(delta: float) -> void:
 		if Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
 			speed_x += acceleration * delta
 			f = false
-	#
-	if f:
-		speed_x *= decceleration
-		speed_y *= decceleration
+		#
+		if f:
+			speed_x *= decceleration
+			speed_y *= decceleration
 	#
 	speed_x = clamp(speed_x, -max_speed, max_speed)
 	speed_y = clamp(speed_y, -max_speed, max_speed)
@@ -229,6 +229,5 @@ func _input(event):
 func set_life():
 	if Global.level != null:
 		var pl: ProgressBar = Global.level.get_node("CanvasLayer/Control/VBoxContainer/Control/PlayerLife")
-		print(float(life) / float(max_life) * float(pl.max_value))
 		pl.value = float(life) / float(max_life) * float(pl.max_value)
 	
