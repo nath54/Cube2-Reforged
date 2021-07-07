@@ -49,7 +49,7 @@ func _ready():
 		max_speed = 50
 	# Set skin
 	$Skin/Skin.queue_free()
-	var skin = load("res://res/skins/"+str(Global.skin)+"/Skin.tscn").instance()
+	var skin = load("res://res/skins/"+str(Account.skin_equipe)+"/Skin.tscn").instance()
 	$Skin.add_child(skin)
 	
 
@@ -77,7 +77,7 @@ func movement(delta: float) -> void:
 	#
 
 func _process(delta: float):
-	if Global.level.lance:
+	if Global.level.lance and not Global.level.pause:
 		movement(delta)
 		x += speed_x
 		y += speed_y
@@ -137,6 +137,7 @@ func collisions() -> void:
 				# Sinon il y a une collision
 				if tilemap.get_cell(x, y)==0 and Global.difficulty>0: self.life=0
 				elif (tilemap.get_cell(x, y)==0 and Global.difficulty==0) or tilemap.get_cell(x, y)==2:
+					life -= 5
 					if col["side"] == "right":
 						self.x = x * tc - self.t - rebondit_cols
 						self.speed_x = 0
@@ -188,6 +189,8 @@ func collisions() -> void:
 			Global.keys.erase(key)
 
 func _input(event):
+	if Input.is_action_just_pressed("menu"):
+		Global.scenes.change_scene("res://menus/MainMenu.tscn")
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if click == null:

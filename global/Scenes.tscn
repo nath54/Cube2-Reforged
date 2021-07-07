@@ -57,7 +57,6 @@ text = "Loading..."
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 10
-follow_viewport_enable = true
 
 [node name="Interface" type="Control" parent="Interface"]
 anchor_right = 1.0

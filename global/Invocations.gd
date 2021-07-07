@@ -19,6 +19,9 @@ extends Node
 # Cout de 1 voeux : 1000 money
 # Cout de 10 voeux : 9000 money
 
+# à partir de 10 de pity : 
+#   - On a un épique garantit
+
 # à partir de 70 de pity : 
 #   - 0.5 % de chance d'avoir un légendaire
 #   - 0.05 % de chance d'avoir un divin
@@ -26,11 +29,17 @@ extends Node
 # à partir de 80 de pity : 
 #   - 5 % de chance d'avoir un légendaire
 
+# à partir de 100 de pity : 
+#   - On a un légendaire garantit
+
 # à partir de 150 de pity:
 #   - 0.1 % de chance d'avoir un divin
 
 # à partir de 200 de pity:
 #   - 1 % de chance d'avoir un divin
+
+# à partir de 250 de pity : 
+#   - On a un divin garantit
 
 # Rappels : 
 #  0 : commun
@@ -40,27 +49,14 @@ extends Node
 #  4 : divin
 
 const probs: Dictionary = { # % de chance d'avoir la rareté en fonction du minimum de la pity que l'on a
-	4: {0: 0.01, 70: 0.05, 150: 0.1, 200: 1},
-	3: {0: 0.09, 70: 0.5, 80: 5},
-	2: {0: 3.9},
+	4: {0: 0.01, 70: 0.05, 150: 0.1, 200: 1, 250:100},
+	3: {0: 0.09, 70: 0.5, 80: 5, 100:100},
+	2: {0: 3.9, 10:100},
 	1: {0: 40},
 	0: {0: 100}
 }
 
-const limits: Dictionary = {
-	4: 250,
-	3: 100,
-	2: 10
-}
-
-var pitys: Dictionary = {
-	4: 0,
-	3: 0,
-	2: 0,
-	1: 0,
-	0: 0
-}
-
+# Si on a pas eu de skins limités, on en aura un garantit la prochaine fois
 var skins_limite_garantits: Dictionary = {
 	4: true,
 	3: true,
@@ -68,7 +64,6 @@ var skins_limite_garantits: Dictionary = {
 	1: true, # sur les bannieres limitées est
 	0: true  # est garanti d'être de la bannière
 }
-
 
 func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et la rareté
 	# VERIFICATIONS
@@ -82,8 +77,8 @@ func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et
 		# On récupère la probabilité
 		var prob: float = 0
 		for test_pity in probs[rarete].keys():
-			if pitys[rarete] >= test_pity:
-				prob = pitys[rarete][test_pity]
+			if Account.pitys[rarete] >= test_pity:
+				prob = probs[rarete][test_pity]
 		# On effectue le tirage
 		var tir: float = randf() * 100
 		if tir <= prob:
@@ -100,6 +95,11 @@ func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et
 	randomize()
 	var length: int = len(DataSB.collections[skin_ban]["tries_rar"][rar_ob])
 	var id_skin = DataSB.collections[skin_ban]["tries_rar"][rar_ob][int(randf()*length)]
+	# On va ajouter le skin au compte et faire les modifs nécessaires
+	if id_skin in Account.skins.keys():
+		Account.skins[id_skin] += 1
+	else:
+		Account.skins[id_skin] = 1
 	#
 	return {"id_skin": id_skin, "rar": rar_ob}
 

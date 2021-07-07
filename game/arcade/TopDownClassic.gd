@@ -21,6 +21,7 @@ var max_y = null
 
 onready var progressStyleBox = $CanvasLayer/Control/ProgressBar.get("custom_styles/fg")
 var lance: bool = false
+var pause: bool = false
 # map : 0 = mur, 1 = sol, 2 = mur non mortel
 
 func generate() -> void:
@@ -106,10 +107,12 @@ func _ready():
 	lance = true
 
 func _process(delta):
-	if lance:
+	if lance and not pause:
 		var cl = Color(1.0-wait_time/time_max,1.0*wait_time/time_max,0)
 		progressStyleBox.bg_color = cl
 		$CanvasLayer/Control/ProgressBar.value = 100.0*wait_time/time_max
 		wait_time -= delta
 		if wait_time <= 0:
 			Global.lose_game()
+
+

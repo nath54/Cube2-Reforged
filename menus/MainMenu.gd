@@ -1,13 +1,20 @@
 extends Control
 
 func _ready():
-	#
-	$VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Label.text = str(Global.money)
+	# On met le skin que le joueur a
+	$VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer/ViewportContainer/Skin.queue_free()
+	var skin = load("res://res/skins/"+str(Account.skin_equipe)+"/Skin.tscn").instance()
+	$VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer/ViewportContainer/.add_child(skin)
+	skin.position = Vector2(50, 30)
+	skin.scale = Vector2(0.5, 0.5)
+	# On met l'argent que le joueur a
+	$VSplitContainer/CenterContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Label.text = str(Account.money)
 	#
 	if rect_size.y >= 700 and rect_size.x <= rect_size.y*1.5:
 		$VSplitContainer/VBoxContainer/CenterContainer2/GridContainer.columns = 3
 	else:
 		$VSplitContainer/VBoxContainer/CenterContainer2/GridContainer.columns = 4
+	
 
 func _on_MainMenu_resized():
 	if rect_size.y >= 700 and rect_size.x <= rect_size.y*1.5:
