@@ -53,6 +53,6 @@ func _on_BtCredits_pressed():
 
 
 func _on_BtQuit_pressed():
-	get_tree().quit()
+	Global.scenes.quit()
 
 

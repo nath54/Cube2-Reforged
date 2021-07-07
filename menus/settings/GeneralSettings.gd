@@ -14,6 +14,7 @@ func _ready():
 	for x in range(5):
 		popupMenu.add_item(difs[x], x)
 	#
+	menuButton.text = difs[Global.difficulty]
 
 func change_diff(new_dif):
 	Global.difficulty = new_dif

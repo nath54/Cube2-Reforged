@@ -96,10 +96,19 @@ func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et
 	var length: int = len(DataSB.collections[skin_ban]["tries_rar"][rar_ob])
 	var id_skin = DataSB.collections[skin_ban]["tries_rar"][rar_ob][int(randf()*length)]
 	# On va ajouter le skin au compte et faire les modifs nécessaires
+	# On ajoute le skin au compte
 	if id_skin in Account.skins.keys():
 		Account.skins[id_skin] += 1
 	else:
 		Account.skins[id_skin] = 1
+	# On va modifier les pitys
+	for p in Account.pitys.keys():
+		if p == rar_ob:
+			Account.pitys[p] = 0
+		else:
+			Account.pitys[p] += 1
+	# On va sauvegarder
+	Saves.save_account()
 	#
 	return {"id_skin": id_skin, "rar": rar_ob}
 

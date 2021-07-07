@@ -31,52 +31,67 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 317.0
-margin_top = 132.0
-margin_right = 707.0
-margin_bottom = 467.0
+margin_left = 253.0
+margin_top = 78.0
+margin_right = 771.0
+margin_bottom = 522.0
 custom_constants/separation = 50
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 390.0
+margin_right = 518.0
 margin_bottom = 60.0
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
-margin_right = 390.0
+margin_left = 64.0
+margin_right = 454.0
 margin_bottom = 60.0
 custom_fonts/font = SubResource( 1 )
 text = "End of the game"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 110.0
-margin_right = 390.0
-margin_bottom = 140.0
+margin_right = 518.0
+margin_bottom = 339.0
+custom_constants/separation = 50
 
-[node name="Died Floor" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2"]
-margin_left = 71.0
-margin_right = 318.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 247.0
+margin_bottom = 229.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 247.0
+margin_bottom = 84.0
+
+[node name="Died Floor" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer2"]
+margin_right = 247.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 2 )
 text = "You died at floor 0"
 align = 1
 valign = 1
 
-[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 190.0
-margin_right = 390.0
-margin_bottom = 230.0
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 247.0
+margin_bottom = 174.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer3"]
-margin_left = 93.0
-margin_right = 297.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer3"]
+margin_left = 21.0
+margin_right = 225.0
 margin_bottom = 40.0
 custom_constants/separation = 10
 
-[node name="Money" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
+[node name="Money" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
 margin_top = 3.0
 margin_right = 154.0
 margin_bottom = 36.0
@@ -85,7 +100,7 @@ text = "You get : 0"
 align = 2
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer3/HBoxContainer"]
 margin_left = 164.0
 margin_right = 204.0
 margin_bottom = 40.0
@@ -94,14 +109,63 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 297.0
+margin_right = 518.0
+margin_bottom = 229.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 221.0
+margin_bottom = 30.0
+
+[node name="Difficulty" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer2"]
+margin_right = 221.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+text = "Difficulty : Baby"
+align = 1
+valign = 1
+
+[node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 80.0
+margin_right = 221.0
+margin_bottom = 110.0
+
+[node name="Arcade_Record" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer4"]
+margin_left = 26.0
+margin_right = 195.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 2 )
+text = "Highscore : 0"
+align = 1
+valign = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 160.0
+margin_right = 221.0
+margin_bottom = 229.0
+
+[node name="Arcade_Record_Month" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer3"]
+margin_left = 10.0
+margin_right = 210.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = SubResource( 3 )
+text = "Highscore in this month : 0"
+align = 2
+valign = 1
+autowrap = true
+
 [node name="CenterContainer4" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 280.0
-margin_right = 390.0
-margin_bottom = 335.0
+margin_top = 389.0
+margin_right = 518.0
+margin_bottom = 444.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer4"]
-margin_left = 70.0
-margin_right = 320.0
+margin_left = 134.0
+margin_right = 384.0
 margin_bottom = 55.0
 custom_constants/separation = 50
 

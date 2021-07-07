@@ -19,7 +19,7 @@ var min_y = null
 var max_x = null
 var max_y = null
 
-onready var progressStyleBox = $CanvasLayer/Control/ProgressBar.get("custom_styles/fg")
+onready var progressStyleBox = $CanvasLayer/Control/VBoxContainer/ProgressBar.get("custom_styles/fg")
 var lance: bool = false
 var pause: bool = false
 # map : 0 = mur, 1 = sol, 2 = mur non mortel
@@ -70,6 +70,7 @@ func generate() -> void:
 	Global.player.x = deb[0] * tc + Global.player.t / 3
 	Global.player.y = deb[1] * tc + Global.player.t / 3
 	Global.player.position = Vector2(Global.player.x, Global.player.y)
+	Global.player.set_life()
 	#
 	
 func _ready():
@@ -100,7 +101,7 @@ func _ready():
 	Global.player.get_node("Camera2D").current = false
 	yield(get_tree().create_timer(3), "timeout")
 	#
-	$CanvasLayer/Control/ProgressBar.visible = true
+	$CanvasLayer/Control/VBoxContainer/ProgressBar.visible = true
 	$Camera2D.current = false
 	Global.player.get_node("Camera2D").current = true
 	#
@@ -110,9 +111,19 @@ func _process(delta):
 	if lance and not pause:
 		var cl = Color(1.0-wait_time/time_max,1.0*wait_time/time_max,0)
 		progressStyleBox.bg_color = cl
-		$CanvasLayer/Control/ProgressBar.value = 100.0*wait_time/time_max
+		$CanvasLayer/Control/VBoxContainer/ProgressBar.value = 100.0*wait_time/time_max
 		wait_time -= delta
 		if wait_time <= 0:
 			Global.lose_game()
 
 
+func fin():
+	$AnimationPlayer.play("fin")
+	Global.player.fin = true
+	Global.player.speed_x = ((fin[0]*tc) - (Global.player.x-tc/2)) * 2.0 * (1-Global.player.decceleration)
+	Global.player.speed_y = ((fin[1]*tc) - (Global.player.y-tc/2)) * 2.0 * (1-Global.player.decceleration)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "fin":
+		Global.level_fini()

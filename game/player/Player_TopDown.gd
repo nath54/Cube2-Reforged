@@ -20,8 +20,9 @@ var decceleration: float = 0.97
 
 var catched_keys: Array = []
 
-var rebondit_cols:float = 1
+var rebondit_cols: float = 1
 
+var fin: bool = false
 var click = null
 
 # Called when the node enters the scene tree for the first time.
@@ -36,37 +37,39 @@ func _ready():
 		decceleration = 0.96
 		max_speed = 35
 	elif Global.difficulty == 2:
-		acceleration = 20
+		acceleration = 17
 		decceleration = 0.97
 		max_speed = 40
 	elif Global.difficulty == 3:
-		acceleration = 22
+		acceleration = 18
 		decceleration = 0.98
 		max_speed = 45
 	elif Global.difficulty == 4:
-		acceleration = 25
+		acceleration = 20
 		decceleration = 0.99
 		max_speed = 50
 	# Set skin
 	$Skin/Skin.queue_free()
 	var skin = load("res://res/skins/"+str(Account.skin_equipe)+"/Skin.tscn").instance()
 	$Skin.add_child(skin)
+	#
 	
 
 func movement(delta: float) -> void:
 	var f = true
-	if Input.is_action_pressed("up") or Global.joystick.y <= -Global.deadzone:
-		speed_y -= acceleration * delta
-		f = false
-	if Input.is_action_pressed("down") or Global.joystick.y >= Global.deadzone:
-		speed_y += acceleration * delta
-		f = false
-	if Input.is_action_pressed("left") or Global.joystick.x <= -Global.deadzone:
-		speed_x -= acceleration * delta
-		f = false
-	if Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
-		speed_x += acceleration * delta
-		f = false
+	if not fin: 
+		if Input.is_action_pressed("up") or Global.joystick.y <= -Global.deadzone:
+			speed_y -= acceleration * delta
+			f = false
+		if Input.is_action_pressed("down") or Global.joystick.y >= Global.deadzone:
+			speed_y += acceleration * delta
+			f = false
+		if Input.is_action_pressed("left") or Global.joystick.x <= -Global.deadzone:
+			speed_x -= acceleration * delta
+			f = false
+		if Input.is_action_pressed("right") or Global.joystick.x >= Global.deadzone:
+			speed_x += acceleration * delta
+			f = false
 	#
 	if f:
 		speed_x *= decceleration
@@ -81,8 +84,9 @@ func _process(delta: float):
 		movement(delta)
 		x += speed_x
 		y += speed_y
-		collisions()
-		test_life()
+		if not fin:
+			collisions()
+			test_life()
 		position = Vector2(x, y);
 
 func test_life() -> void:
@@ -90,12 +94,13 @@ func test_life() -> void:
 		if Global.difficulty == 4:
 			Global.lose_game()
 		life = max_life
+		set_life()
 		x = spawn_x
 		y = spawn_y
 		speed_x = 0
 		speed_y = 0
 		count_dead += 1
-		
+
 	Global.scenes.get_node("Interface/Interface/VBoxContainer/dead").text = "dead "+str(count_dead)+"x"
 
 func square_col(x1:float, y1:float, tx1:float, ty1:float, x2:float, y2:float, tx2:float, ty2:float) -> Dictionary:
@@ -138,6 +143,7 @@ func collisions() -> void:
 				if tilemap.get_cell(x, y)==0 and Global.difficulty>0: self.life=0
 				elif (tilemap.get_cell(x, y)==0 and Global.difficulty==0) or tilemap.get_cell(x, y)==2:
 					life -= 5
+					set_life()
 					if col["side"] == "right":
 						self.x = x * tc - self.t - rebondit_cols
 						self.speed_x = 0
@@ -179,9 +185,11 @@ func collisions() -> void:
 							self.y = y * tc - self.t - rebondit_cols
 							self.speed_y = 0
 
-				if tilemap.get_cell(x, y) == 2 and map.p1: self.life -= 50
+				if tilemap.get_cell(x, y) == 2 and map.p1:
+					self.life -= 50
+					set_life()
 				if map.fin == [x,y]:
-					Global.level_fini()
+					Global.level.fin()
 	
 	for key in Global.keys:
 		if square_col(self.x, self.y, self.t, self.t, key.x, key.y, key.t, key.t):
@@ -217,3 +225,10 @@ func _input(event):
 				Global.joystick = d
 		else:
 			Global.joystick = Vector2.ZERO
+
+func set_life():
+	if Global.level != null:
+		var pl: ProgressBar = Global.level.get_node("CanvasLayer/Control/VBoxContainer/Control/PlayerLife")
+		print(float(life) / float(max_life) * float(pl.max_value))
+		pl.value = float(life) / float(max_life) * float(pl.max_value)
+	

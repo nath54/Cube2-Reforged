@@ -6,14 +6,12 @@ var player: Node = null
 var level: Node = null
 var fin: Node = null
 
-# 0: très facile
-# 1: facile
-# 2: normal
-# 3: difficile
-# 4: hardcore
 
-var theme = 2
-var mode = "arcade"
+# difficulties :             0       1        2        3        4 
+var difficulties: Array = ["baby", "easy", "normal", "hard", "hardcore"]
+
+var theme: int = 2
+var mode: String = "arcade"
 var difficulty: int = 0
 var stage: int = 1
 var keys: Array = []

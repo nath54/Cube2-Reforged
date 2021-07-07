@@ -169,7 +169,7 @@ func trie_collections() -> void:
 # permet de faire directement une comparaison
 # par ordre alphabétique
 
-const dates = {
+const dates: Dictionary = {
 	"01/01": "egypt",
 	"01/08": "vehicles",
 	"01/14": "blobs",
@@ -213,7 +213,7 @@ const dates = {
 # Fonction pour récuperer les bannieres limitées
 # en fonction du jour où l'on est
 func get_bans_lim() -> Array:
-	var time = OS.get_dastetime()
+	var time: Dictionary = OS.get_dastetime()
 	var str_date: String = str(time["month"]) + "/" + str(time["day"])
 	var index_key: int = 0
 	while index_key < len(dates.keys())-1 and not (str_date >= dates[index_key] and str_date < dates[index_key]):

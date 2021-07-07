@@ -21,3 +21,8 @@ func change_scene(path):
 
 func _process(delta):
 	$Interface/Interface/VBoxContainer/fps.text = str(Engine.get_frames_per_second())
+
+func quit():
+	Saves.save_params()
+	Saves.save_account()
+	get_tree().quit()
