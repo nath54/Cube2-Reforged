@@ -134,6 +134,44 @@ var collections: Dictionary = {
 	"": {"skins": [], "bg": ""},
 };
 
+var collections_ban_infos: Dictionary = {
+	"standard": "Permanent skins", # Tout le temps
+	"countries": "", # septembre
+	"sports": "", # juillet
+	"christmas": "", # décembre
+	"halloween": "", # octobre
+	"easter": "", # avril
+	"animals": "", # septembre / octobre
+	"summer": "", # juillet
+	"deluxe": "", # mai
+	"back to school": "", # septembre
+	"middle ages": "", # janvier / fevrier
+	"fantasy": "", # juin
+	"technologies": "", # juin
+	"fruits & vegetables": "", #juin
+	"smileys": "", # aout
+	"nature": "", # mai
+	"arts": "", # juin
+	"celebrities": "", # novembre
+	"food": "", # mars
+	"monuments": "", # octobre
+	"blobs": "", # janvier
+	"mythology": "", # octobre
+	"flowers": "", # avril
+	"hell": "",  # mai
+	"love": "", # février
+	"vehicles": "", # janvier
+	"china": "", # février
+	"japan": "", # fin février
+	"egypt": "", # janvier
+	"space": "", # avril
+	"anime": "", # 15 décembre
+	"jobs": "", # mai
+	"pirates": "", # septembre / octobre
+	"masks": "", # mars
+	"": "",
+}
+
 # Banières 
 #  - bannière arme
 #  - bannière limitée
