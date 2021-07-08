@@ -26,3 +26,4 @@ func quit():
 	Saves.save_params()
 	Saves.save_account()
 	get_tree().quit()
+

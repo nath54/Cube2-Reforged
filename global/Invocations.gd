@@ -80,7 +80,8 @@ func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et
 			if Account.pitys[rarete] >= test_pity:
 				prob = probs[rarete][test_pity]
 		# On effectue le tirage
-		var tir: float = randf() * 100
+		var tir: float = randf() * 100.0
+		print(tir)
 		if tir <= prob:
 			# On a la rareté obtenue
 			rar_ob = rarete

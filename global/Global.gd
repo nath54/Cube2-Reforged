@@ -20,6 +20,8 @@ var joy_method: int = 1
 var joystick: Vector2 = Vector2.ZERO
 var deadzone: float = 40
 
+var id_banniere: String = "standard"
+
 func level_fini():
 	if mode == "arcade":
 		stage += 1

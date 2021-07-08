@@ -66,7 +66,7 @@ func load_account() -> void:
 		Account.date_arcade_record = data["date_arcade_record"]
 		Account.arcade_record_month = data["arcade_record_month"]
 		Account.date_arcade_record_month = data["date_arcade_record_month"]
-		for dic in [Account.arcade_record, Account.date_arcade_record, Account.arcade_record_month, Account.date_arcade_record_month]:
-			for x in range(0,5):
-				dic[x] = dic[str(x)]
+		for dic in [Account.arcade_record, Account.date_arcade_record, Account.arcade_record_month, Account.date_arcade_record_month, Account.pitys, Account.skins]:
+			for x in dic.keys():
+				dic[int(x)] = dic[str(x)]
 				dic.erase(str(x))
