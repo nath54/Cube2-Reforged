@@ -14,21 +14,35 @@ var cl_rars: Dictionary = {
 	4: Color(1, 0, 0)
 }
 
+var res: Dictionary = {}
+var num_skin: int = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var res: Dictionary = Invocations.invo(Global.id_banniere)
+	res = Invocations.multi(Global.id_banniere)
 	#
-	$CenterContainer/ViewportContainer/Light2D.color = cl_rars[res["rar"]]
+	reset()
+
+func reset():
 	#
-	$CenterContainer/ViewportContainer/Skin/Skin.queue_free()
-	var file: String = "res://res/skins/"+str(res["id_skin"])+"/Skin.tscn"
+	$CenterContainer/ViewportContainer/Light2D.color = cl_rars[res["invos"][num_skin]["rar"]]
+	#
+	skin.queue_free()
+	var file: String = "res://res/skins/"+str(res["invos"][num_skin]["id_skin"])+"/Skin.tscn"
+	print(file)
 	skin = load(file).instance()
-	skin.name = "Skin"
 	$CenterContainer/ViewportContainer/Skin.add_child(skin)
 	skin.position = Vector2(242, 155)
 	skin.visible = false
-	$NomSkin.text = DataSB.skins[res["id_skin"]]["nom"] + "  [You have "+str(Account.skins[res["id_skin"]])+"]"
-
+	skin.name = "Skin"
+	$NomSkin.text = DataSB.skins[res["invos"][num_skin]["id_skin"]]["nom"] + "  [You have "+str(Account.skins[res["invos"][num_skin]["id_skin"]])+"]"
+	#
+	$CenterContainer/ViewportContainer/Light2D.visible = false
+	$CenterContainer/ViewportContainer/Skin/Skin.visible = false
+	$NomSkin.visible = false
+	mode = 0
+	#
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -50,7 +64,11 @@ func _input(event):
 			skin.scale = Vector2(1, 1)
 			mode = 2
 		elif mode == 2:
-			Global.scenes.change_scene("res://menus/Shop.tscn")
+			num_skin += 1
+			if num_skin == 10:
+				Global.scenes.change_scene("res://menus/Shop.tscn")
+			else:
+				reset()
 
 
 func _process(delta):

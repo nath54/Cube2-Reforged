@@ -49,9 +49,9 @@ extends Node
 #  4 : divin
 
 const probs: Dictionary = { # % de chance d'avoir la rareté en fonction du minimum de la pity que l'on a
-	4: {0: 0.01, 70: 0.05, 150: 0.1, 200: 1, 250:100},
-	3: {0: 0.09, 70: 0.5, 80: 5, 100:100},
-	2: {0: 3.9, 10:100},
+	4: {0: 0.05, 70: 0.15, 150: 1, 200: 15, 250:100},
+	3: {0: 0.4, 70: 5, 80: 15, 100:100},
+	2: {0: 5, 10:100},
 	1: {0: 40},
 	0: {0: 100}
 }
@@ -81,7 +81,6 @@ func invo(id_banniere: String) -> Dictionary: # retourne l'id du skin obtenu et
 				prob = probs[rarete][test_pity]
 		# On effectue le tirage
 		var tir: float = randf() * 100.0
-		print(tir)
 		if tir <= prob:
 			# On a la rareté obtenue
 			rar_ob = rarete
@@ -120,6 +119,7 @@ func multi(id_banniere: String) -> Dictionary:
 	var results: Array = []
 	for x in range(10):
 		var res: Dictionary = invo(id_banniere)
+		results.append(res)
 		if res["rar"] > max_rar:
 			max_rar = res["rar"]
 	return {"invos": results, "max_rar": max_rar}

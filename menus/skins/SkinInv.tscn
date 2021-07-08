@@ -1,0 +1,111 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://res/skins/1/Skin.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://menus/skins/BtSkinInv.tres" type="StyleBox" id=3]
+[ext_resource path="res://menus/skins/SkinInv.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.498039, 0.984314, 0.00784314, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.803922, 0.803922, 0.803922, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.929412, 0.984314, 0.00784314, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.803922, 0.803922, 0.803922, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 0.937255, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.803922, 0.803922, 0.803922, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="SkinInv" type="Control"]
+margin_right = 150.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 150, 210 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 210 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" type="VBoxContainer" parent="."]
+margin_right = 150.0
+margin_bottom = 212.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Skin"]
+margin_right = 150.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 150, 140 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skin" parent="Skin/ViewportContainer" instance=ExtResource( 1 )]
+position = Vector2( 70, 70 )
+
+[node name="NomSkin" type="Label" parent="Skin"]
+margin_top = 143.0
+margin_right = 150.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 1 )
+text = "Skin"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtEquip" type="Button" parent="Skin"]
+margin_top = 173.0
+margin_right = 150.0
+margin_bottom = 210.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "equip"
+[connection signal="pressed" from="Skin/BtEquip" to="." method="_on_BtEquip_pressed"]

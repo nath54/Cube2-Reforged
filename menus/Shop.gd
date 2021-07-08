@@ -7,19 +7,26 @@ func _on_BtMenu_pressed():
 
 func _ready():
 	#
+	set_portrait()
+	#
+	"""
 	if rect_size.y >= 700 and rect_size.x <= rect_size.y*1.5:
 		set_portrait()
 	else:
 		set_landscape()
+	"""
 	#
 	set_menu("Invocations")
 
 
 func _on_ShopMenu_resized():
+	pass
+	"""
 	if rect_size.y >= 700 and rect_size.x <= rect_size.y*1.5:
 		set_portrait()
 	else:
 		set_landscape()
+	"""
 
 
 func set_portrait():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menus/Shop.gd" type="Script" id=2]
@@ -37,6 +37,10 @@ border_color = Color( 0, 0, 0, 1 )
 size = 25
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 100
+font_data = ExtResource( 1 )
+
 [node name="ShopMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,7 +52,7 @@ __meta__ = {
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 50
+custom_constants/separation = 20
 dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,19 +87,23 @@ text = "Shop"
 align = 1
 valign = 1
 
-[node name="MainContainer" type="HBoxContainer" parent="VSplitContainer"]
-margin_top = 120.0
+[node name="MainContainer" type="VBoxContainer" parent="VSplitContainer"]
+margin_top = 90.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 620.0
+custom_constants/separation = 20
 
-[node name="MenuContainer" type="VBoxContainer" parent="VSplitContainer/MainContainer"]
-margin_right = 150.0
-margin_bottom = 480.0
+[node name="MenuContainer" type="HBoxContainer" parent="VSplitContainer/MainContainer"]
+margin_right = 1024.0
+margin_bottom = 50.0
+alignment = 1
 
 [node name="BtInvos" type="Button" parent="VSplitContainer/MainContainer/MenuContainer"]
-margin_right = 150.0
+margin_right = 253.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = ExtResource( 3 )
@@ -103,10 +111,11 @@ custom_fonts/font = SubResource( 5 )
 text = "Invocations"
 
 [node name="BtSkins" type="Button" parent="VSplitContainer/MainContainer/MenuContainer"]
-margin_top = 54.0
-margin_right = 150.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 150, 50 )
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = ExtResource( 3 )
@@ -114,10 +123,11 @@ custom_fonts/font = SubResource( 5 )
 text = "Skins"
 
 [node name="BtWeapons" type="Button" parent="VSplitContainer/MainContainer/MenuContainer"]
-margin_top = 108.0
-margin_right = 150.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 150, 50 )
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = ExtResource( 3 )
@@ -125,10 +135,11 @@ custom_fonts/font = SubResource( 5 )
 text = "Weapons"
 
 [node name="BtRessources" type="Button" parent="VSplitContainer/MainContainer/MenuContainer"]
-margin_top = 162.0
-margin_right = 150.0
-margin_bottom = 212.0
-rect_min_size = Vector2( 150, 50 )
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = ExtResource( 3 )
@@ -136,32 +147,50 @@ custom_fonts/font = SubResource( 5 )
 text = "Ressources"
 
 [node name="Invocations" type="CenterContainer" parent="VSplitContainer/MainContainer"]
-margin_left = 154.0
-margin_right = 854.0
-margin_bottom = 480.0
+margin_top = 70.0
+margin_right = 1024.0
+margin_bottom = 470.0
 
-[node name="Banniere" parent="VSplitContainer/MainContainer/Invocations" instance=ExtResource( 4 )]
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/MainContainer/Invocations"]
+margin_left = 102.0
+margin_right = 922.0
+margin_bottom = 400.0
+
+[node name="BtLeftBan" type="Button" parent="VSplitContainer/MainContainer/Invocations/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 6 )
+text = "<"
+
+[node name="Banniere" parent="VSplitContainer/MainContainer/Invocations/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 39.0
-margin_right = 700.0
-margin_bottom = 439.0
+margin_left = 60.0
+margin_right = 760.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 700, 400 )
 
+[node name="BtRightBan" type="Button" parent="VSplitContainer/MainContainer/Invocations/HBoxContainer"]
+margin_left = 764.0
+margin_right = 820.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 6 )
+text = ">"
+
 [node name="Skins" type="CenterContainer" parent="VSplitContainer/MainContainer"]
-margin_left = 858.0
-margin_right = 858.0
-margin_bottom = 480.0
+margin_top = 490.0
+margin_right = 1024.0
+margin_bottom = 490.0
 
 [node name="Weapons" type="CenterContainer" parent="VSplitContainer/MainContainer"]
-margin_left = 862.0
-margin_right = 862.0
-margin_bottom = 480.0
+margin_top = 510.0
+margin_right = 1024.0
+margin_bottom = 510.0
 
 [node name="Ressources" type="CenterContainer" parent="VSplitContainer/MainContainer"]
-margin_left = 866.0
-margin_right = 866.0
-margin_bottom = 480.0
+margin_top = 530.0
+margin_right = 1024.0
+margin_bottom = 530.0
 [connection signal="resized" from="." to="." method="_on_ShopMenu_resized"]
 [connection signal="pressed" from="VSplitContainer/HBoxContainer/CenterContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
 [connection signal="pressed" from="VSplitContainer/MainContainer/MenuContainer/BtInvos" to="." method="_on_BtInvos_pressed"]

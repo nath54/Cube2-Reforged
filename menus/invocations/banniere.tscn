@@ -11,7 +11,7 @@ font_data = ExtResource( 1 )
 size = 40
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.184314, 0.25098, 0.317647, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -23,7 +23,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -67,8 +67,11 @@ margin_right = -41.0
 margin_bottom = 137.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = SubResource( 2 )
-text = "Aujourd'hui, le theme sera celui de l'amour, bonne chance aux amoureux !"
+text = "Next divine : 250
+Next legendary : 100
+Next rare : 10"
 align = 2
+valign = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,8 +94,8 @@ __meta__ = {
 margin_right = 170.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 170, 50 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Historique"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -112,8 +115,8 @@ margin_left = 436.0
 margin_right = 606.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 170, 50 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "x1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,8 +127,8 @@ margin_left = 610.0
 margin_right = 780.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 170, 50 )
-custom_styles/normal = SubResource( 4 )
-custom_fonts/font = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "x10"
 __meta__ = {
 "_edit_use_anchors_": false

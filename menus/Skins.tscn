@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/Skins.gd" type="Script" id=1]
 [ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
@@ -9,6 +9,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
 font_data = ExtResource( 2 )
 
 [node name="SkinsMenu" type="Control"]
@@ -56,8 +60,96 @@ text = "Skins"
 align = 1
 valign = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VSplitContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="VSplitContainer"]
 margin_top = 82.0
 margin_right = 1024.0
 margin_bottom = 600.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/HBoxContainer2"]
+margin_right = 1024.0
+margin_bottom = 50.0
+
+[node name="BtAll" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_right = 167.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "all"
+
+[node name="BtCommon" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 171.0
+margin_right = 338.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "common"
+
+[node name="BtRare" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 342.0
+margin_right = 509.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "rare"
+
+[node name="BtEpic" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 513.0
+margin_right = 680.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "epic"
+
+[node name="BtLegendary" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 684.0
+margin_right = 851.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "legendary"
+
+[node name="BtDivine" type="Button" parent="VSplitContainer/HBoxContainer2/HBoxContainer"]
+margin_left = 855.0
+margin_right = 1024.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+text = "divine"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VSplitContainer/HBoxContainer2"]
+margin_top = 54.0
+margin_right = 1024.0
+margin_bottom = 518.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="CenterContainer" type="CenterContainer" parent="VSplitContainer/HBoxContainer2/ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 464.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer/HBoxContainer2/ScrollContainer/CenterContainer"]
+margin_left = 512.0
+margin_top = 232.0
+margin_right = 512.0
+margin_bottom = 232.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 25
+custom_constants/hseparation = 25
+columns = 3
 [connection signal="pressed" from="VSplitContainer/HBoxContainer/CenterContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtAll" to="." method="_on_BtAll_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtCommon" to="." method="_on_BtCommon_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtRare" to="." method="_on_BtRare_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtEpic" to="." method="_on_BtEpic_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtLegendary" to="." method="_on_BtLegendary_pressed"]
+[connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtDivine" to="." method="_on_BtDivine_pressed"]

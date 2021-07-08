@@ -1,36 +1,36 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://res/ui/invos/coffre_1.png" type="Texture" id=1]
-[ext_resource path="res://res/ui/invos/coffre_1_o1.png" type="Texture" id=2]
-[ext_resource path="res://res/ui/invos/bg.png" type="Texture" id=3]
-[ext_resource path="res://res/ui/invos/light_bg.png" type="Texture" id=4]
-[ext_resource path="res://res/skins/1/Skin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/invocations/Single.gd" type="Script" id=6]
-[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://menus/invocations/Multi.gd" type="Script" id=1]
+[ext_resource path="res://res/fonts/charybdis/Charybdis.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://res/skins/1/Skin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://res/ui/invos/bg.png" type="Texture" id=4]
+[ext_resource path="res://res/ui/invos/light_bg.png" type="Texture" id=5]
+[ext_resource path="res://res/ui/invos/coffre_1.png" type="Texture" id=6]
+[ext_resource path="res://res/ui/invos/coffre_1_o1.png" type="Texture" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
+font_data = ExtResource( 2 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "ouvre",
 "speed": 5.0
 } ]
 
-[node name="Single" type="Control"]
+[node name="Multi" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 6 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,7 +38,7 @@ __meta__ = {
 [node name="Sprite" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 expand = true
 stretch_mode = 2
 __meta__ = {
@@ -53,7 +53,7 @@ margin_left = 50.0
 margin_top = 50.0
 margin_right = -50.0
 margin_bottom = -50.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
 text = "Nom du skin"
 align = 1
@@ -79,7 +79,7 @@ margin_bottom = 300.0
 visible = false
 position = Vector2( -22, -10 )
 scale = Vector2( 3, 3 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 texture_scale = 1.7
 color = Color( 0.360784, 0.0627451, 0.498039, 1 )
 energy = 7.84
@@ -88,13 +88,13 @@ energy = 7.84
 light_mask = 2
 position = Vector2( -22, -10 )
 scale = Vector2( 3, 3 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 
 [node name="Skin" type="Node2D" parent="CenterContainer/ViewportContainer"]
 position = Vector2( -512, -300 )
 scale = Vector2( 2, 2 )
 
-[node name="Skin" parent="CenterContainer/ViewportContainer/Skin" instance=ExtResource( 5 )]
+[node name="Skin" parent="CenterContainer/ViewportContainer/Skin" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 242, 155 )
 scale = Vector2( 1e-05, 1e-05 )
