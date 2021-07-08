@@ -41,6 +41,7 @@ func reset():
 	$CenterContainer/ViewportContainer/Light2D.visible = false
 	$CenterContainer/ViewportContainer/Skin/Skin.visible = false
 	$NomSkin.visible = false
+	$CenterContainer/ViewportContainer/AnimatedSprite.play("default")
 	mode = 0
 	#
 

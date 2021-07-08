@@ -251,17 +251,21 @@ const dates: Dictionary = {
 # Fonction pour récuperer les bannieres limitées
 # en fonction du jour où l'on est
 func get_bans_lim() -> Array:
-	var time: Dictionary = OS.get_dastetime()
-	var str_date: String = str(time["month"]) + "/" + str(time["day"])
+	var time: Dictionary = OS.get_datetime()
+	var td: String = str(time["day"])
+	var tm: String = str(time["month"])
+	if len(td) == 1: td = "0"+td
+	if len(tm) == 1: tm = "0"+tm
+	var str_date: String = tm + "/" + td
 	var index_key: int = 0
-	while index_key < len(dates.keys())-1 and not (str_date >= dates[index_key] and str_date < dates[index_key]):
+	while index_key < len(dates.keys())-1 and not (str_date >= dates.keys()[index_key] and str_date < dates.keys()[index_key+1]):
 		index_key += 1
 	#
 	var limited_bans: Array = []
-	if dates[index_key] is String:
-		limited_bans.append(dates[index_key])
-	elif dates[index_key] is Array:
-		limited_bans += dates[index_key]
+	if dates[dates.keys()[index_key]] is String:
+		limited_bans.append(dates[dates.keys()[index_key]])
+	elif dates[dates.keys()[index_key]] is Array:
+		limited_bans += dates[dates.keys()[index_key]]
 	#
 	return limited_bans
 
