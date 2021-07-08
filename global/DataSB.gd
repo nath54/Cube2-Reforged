@@ -15,22 +15,22 @@ func _ready():
 # Les données du skin en fonction de leurs id
 const skins: Dictionary = {
 	1: {"nom": "cube", "rar": 0}, # standard
-	2: {"nom": "little eyes", "rar": 0}, # standard
-	3: {"nom": "black arrow", "rar": 0}, # a changer le nom # standard
-	4: {"nom": "rotating eyes", "rar": 2}, # standard
+	2: {"nom": "little eyes", "rar": 0, "rot": true}, # standard
+	3: {"nom": "black arrow", "rar": 0, "rot": true}, # a changer le nom # standard
+	4: {"nom": "rotating eyes", "rar": 2, "rot": true}, # standard
 	5: {"nom": "france", "rar": 1}, # country
 	6: {"nom": "lighted france", "rar": 3}, # country
 	7: {"nom": "red cross", "rar": 0}, # standard
 	8: {"nom": "green circle", "rar": 0}, # standard
-	9: {"nom": "green arrow", "rar": 3}, # standard
+	9: {"nom": "green arrow", "rar": 3, "rot": true}, # standard
 	10: {"nom": "tiles", "rar": 1}, # standard
-	11: {"nom": "pacman", "rar": 3}, # standard
+	11: {"nom": "pacman", "rar": 3, "rot": true, "agl": 270}, # standard
 	12: {"nom": "hole", "rar": 1}, # standard
 	13: {"nom": "red zone", "rar": 3}, # anime
-	14: {"nom": "stupid head", "rar": 3}, # standard
-	15: {"nom": "line", "rar": 3}, # standard
-	16: {"nom": "thrusted", "rar": 3}, # vehicle
-	17: {"nom": "space ship", "rar": 4}, # vehicle
+	14: {"nom": "stupid head", "rar": 3, "rot": true}, # standard
+	15: {"nom": "line", "rar": 3, "rot": true}, # standard
+	16: {"nom": "thrusted", "rar": 3, "rot": true}, # vehicle
+	17: {"nom": "space ship", "rar": 4, "rot": true}, # vehicle
 	18: {"nom": "germany", "rar": 1}, # country
 	19: {"nom": "austria", "rar": 1}, # country
 	20: {"nom": "armenia", "rar": 1}, # country
@@ -87,9 +87,9 @@ const skins: Dictionary = {
 	71: {"nom": "little square", "rar": 1}, # standard
 	72: {"nom": "little lozenge", "rar": 1}, # standard
 	73: {"nom": "white on black", "rar": 1}, # standard
-	74: {"nom": "blue stripes", "rar": 0}, # standard
-	75: {"nom": "red stripes", "rar": 0}, # standard
-	76: {"nom": "green peaks", "rar": 3}, # standard
+	74: {"nom": "blue stripes", "rar": 0, "rot": true}, # standard
+	75: {"nom": "red stripes", "rar": 0, "rot": true}, # standard
+	76: {"nom": "green peaks", "rar": 3, "rot": true}, # standard
 }
 
 

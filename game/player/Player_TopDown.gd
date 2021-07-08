@@ -25,6 +25,11 @@ var rebondit_cols: float = 1
 var fin: bool = false
 var click = null
 
+var rot: bool = false
+var agl_base: int = 0
+
+onready var skin: Node2D = $Skin/Skin
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.player = self
@@ -50,9 +55,16 @@ func _ready():
 		max_speed = 50
 	# Set skin
 	$Skin/Skin.queue_free()
-	var skin = load("res://res/skins/"+str(Account.skin_equipe)+"/Skin.tscn").instance()
+	skin = load("res://res/skins/"+str(Account.skin_equipe)+"/Skin.tscn").instance()
 	$Skin.add_child(skin)
 	#
+	if "rot" in DataSB.skins[Account.skin_equipe].keys():
+		rot = DataSB.skins[Account.skin_equipe]["rot"]
+	
+	if "agl" in DataSB.skins[Account.skin_equipe].keys():
+		agl_base = DataSB.skins[Account.skin_equipe]["agl"]
+	#
+	$Skin/Skin.rotation_degrees = agl_base
 	
 
 func movement(delta: float) -> void:
@@ -84,6 +96,7 @@ func _process(delta: float):
 		movement(delta)
 		x += speed_x
 		y += speed_y
+		test_rotation()
 		if not fin:
 			collisions()
 			test_life()
@@ -231,3 +244,19 @@ func set_life():
 		var pl: ProgressBar = Global.level.get_node("CanvasLayer/Control/VBoxContainer/Control/PlayerLife")
 		pl.value = float(life) / float(max_life) * float(pl.max_value)
 	
+
+func test_rotation() -> void:
+	if not rot:
+		return
+	var tourne: int = 0
+	#
+	if abs(speed_x) > abs(speed_y):
+		if speed_x < 0:
+			tourne = 90
+		else:
+			tourne = 270
+	else:
+		if speed_y < 0:
+			tourne = 180
+	#
+	skin.rotation_degrees = agl_base + tourne

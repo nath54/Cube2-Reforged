@@ -146,6 +146,7 @@ size_flags_vertical = 3
 custom_constants/vseparation = 25
 custom_constants/hseparation = 25
 columns = 3
+[connection signal="resized" from="." to="." method="_on_SkinsMenu_resized"]
 [connection signal="pressed" from="VSplitContainer/HBoxContainer/CenterContainer/BtMenu" to="." method="_on_BtMenu_pressed"]
 [connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtAll" to="." method="_on_BtAll_pressed"]
 [connection signal="pressed" from="VSplitContainer/HBoxContainer2/HBoxContainer/BtCommon" to="." method="_on_BtCommon_pressed"]
