@@ -22,9 +22,8 @@ func _ready():
 		# Calcul des gains
 		var gains:int = 1
 		var g: String = str(Global.stage)
-		for x in range(len(g), 0, -1):
-			gains += (int(g[x-1])) * (x+1)
-		gains *= (5+randf()*5)
+		gains = Global.stage
+		gains *= (10+randf()*5)
 		if Global.difficulty == 1:
 			gains *= 1.2
 		elif Global.difficulty == 2:
@@ -35,6 +34,7 @@ func _ready():
 			gains *= 2
 		Account.money += gains
 		Saves.save_account()
+		Global.stage = 1
 		# Affichages
 		$CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer2/Difficulty.text = "Difficulty " + Global.difficulties[Global.difficulty]
 		$"CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/CenterContainer2/Died Floor".text = "You reach the floor "+str(Global.stage)

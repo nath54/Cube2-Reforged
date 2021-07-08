@@ -211,7 +211,7 @@ func collisions() -> void:
 
 func _input(event):
 	if Input.is_action_just_pressed("menu"):
-		Global.scenes.change_scene("res://menus/MainMenu.tscn")
+		Global.scenes.change_scene("res://menus/EndOfGame.tscn")
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if click == null:
