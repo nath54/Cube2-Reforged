@@ -24,7 +24,7 @@ const skins: Dictionary = {
 	8: {"nom": "green circle", "rar": 0}, # standard
 	9: {"nom": "green arrow", "rar": 3, "rot": true}, # standard
 	10: {"nom": "tiles", "rar": 1}, # standard
-	11: {"nom": "pacman", "rar": 3, "rot": true, "agl": 270}, # standard
+	11: {"nom": "pacman", "rar": 3, "rot": true, "agl": 0}, # standard
 	12: {"nom": "hole", "rar": 1}, # standard
 	13: {"nom": "red zone", "rar": 3}, # anime
 	14: {"nom": "stupid head", "rar": 3, "rot": true}, # standard

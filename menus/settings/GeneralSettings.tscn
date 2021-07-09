@@ -34,17 +34,17 @@ __meta__ = {
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 10.0
-margin_right = 11.0
+margin_top = 15.0
+margin_right = -15.0
 margin_bottom = -15.0
+custom_constants/separation = 50
 dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HSplitContainer" parent="VSplitContainer"]
-margin_right = 1020.0
+margin_right = 3068.0
 margin_bottom = 70.0
 dragger_visibility = 1
 
@@ -65,17 +65,18 @@ text = "Back"
 [node name="Label" type="Label" parent="VSplitContainer/HBoxContainer"]
 margin_left = 112.0
 margin_top = 5.0
-margin_right = 1020.0
+margin_right = 3068.0
 margin_bottom = 65.0
 custom_fonts/font = SubResource( 2 )
 text = "General Settings"
 align = 1
 valign = 1
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="VSplitContainer"]
-margin_top = 82.0
-margin_right = 1020.0
-margin_bottom = 575.0
+[node name="HBoxContainer2" type="GridContainer" parent="VSplitContainer"]
+margin_top = 120.0
+margin_right = 3068.0
+margin_bottom = 570.0
+columns = 3
 
 [node name="Difficulty" type="HBoxContainer" parent="VSplitContainer/HBoxContainer2"]
 margin_right = 1020.0

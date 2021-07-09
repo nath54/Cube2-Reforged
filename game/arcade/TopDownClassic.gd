@@ -24,6 +24,26 @@ var lance: bool = false
 var pause: bool = false
 # map : 0 = mur, 1 = sol, 2 = mur non mortel
 
+# Les themes pour les differents étages
+var themes: Dictionary = {
+	0: 0,
+	1: 5,
+	2: 10,
+	3: 15,
+	4: 20,
+	5: 25,
+	6: 30,
+	7: 35,
+	8: 40,
+	9: 45,
+	10: 50,
+	11: 55,
+	12: 60,
+	13: 65,
+	14: 70,
+	15: 75
+}
+
 func generate() -> void:
 	rng.randomize()
 	$Map/TileMap.clear()
@@ -75,6 +95,16 @@ func generate() -> void:
 	
 func _ready():
 	Global.level = self
+	#
+	Global.theme = 1
+	Global.stage = 76
+	while Global.stage >= themes[Global.theme+1] and Global.theme < len(themes.keys())-2:
+		Global.theme += 1
+	if Global.stage >= themes[themes.keys()[-1]]:
+		Global.theme = themes.keys()[-1]
+	#
+	var tileset: TileSet = load("res://game/tiles/TopDown"+str(Global.theme)+".tres")
+	$Map/TileMap.tile_set = tileset
 	#
 	Global.scenes.get_node("Interface/Interface/VBoxContainer/floor").visible = true
 	Global.scenes.get_node("Interface/Interface/VBoxContainer/dead").visible = true
