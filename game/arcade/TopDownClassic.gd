@@ -26,22 +26,21 @@ var pause: bool = false
 
 # Les themes pour les differents étages
 var themes: Dictionary = {
-	0: 0,
-	1: 5,
-	2: 10,
-	3: 15,
-	4: 20,
-	5: 25,
-	6: 30,
-	7: 35,
-	8: 40,
-	9: 45,
-	10: 50,
-	11: 55,
-	12: 60,
-	13: 65,
-	14: 70,
-	15: 75
+	1: 0,
+	2: 5,
+	3: 10,
+	4: 15,
+	5: 20,
+	6: 25,
+	7: 30,
+	8: 35,
+	9: 40,
+	10: 45,
+	11: 50,
+	12: 55,
+	13: 60,
+	14: 65,
+	15: 70
 }
 
 func generate() -> void:
@@ -85,6 +84,22 @@ func generate() -> void:
 	fin = fins[rng.randi_range(0, len(fins)-1)]
 	$Items/Fin.position = Vector2(fin[0]*tc, fin[1]*tc)
 	#
+	if Global.difficulty == 0:
+		Global.player.t = 40
+		Global.player.scale = Vector2(0.4, 0.4)
+	elif Global.difficulty == 1:
+		Global.player.t = 50
+		Global.player.scale = Vector2(0.5, 0.5)
+	elif Global.difficulty == 2:
+		Global.player.t = 60
+		Global.player.scale = Vector2(0.6, 0.6)
+	elif Global.difficulty == 3:
+		Global.player.t = 65
+		Global.player.scale = Vector2(0.65, 0.65)
+	elif Global.difficulty == 4:
+		Global.player.t = 70
+		Global.player.scale = Vector2(0.7, 0.7)
+	#
 	Global.player.spawn_x = deb[0] * tc + (tc-Global.player.t) / 2
 	Global.player.spawn_y = deb[1] * tc + (tc-Global.player.t) / 2
 	Global.player.x = deb[0] * tc + Global.player.t / 3
@@ -97,7 +112,6 @@ func _ready():
 	Global.level = self
 	#
 	Global.theme = 1
-	Global.stage = 76
 	while Global.stage >= themes[Global.theme+1] and Global.theme < len(themes.keys())-2:
 		Global.theme += 1
 	if Global.stage >= themes[themes.keys()[-1]]:
