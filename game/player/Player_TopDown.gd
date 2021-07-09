@@ -33,25 +33,27 @@ onready var skin: Node2D = $Skin/Skin
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.player = self
+	acceleration = 15
+	decceleration = 0.96
 	if Global.difficulty == 0:
 		acceleration = 10
 		decceleration = 0.95
 		max_speed = 30
 	elif Global.difficulty == 1:
-		acceleration = 15
-		decceleration = 0.96
+		#acceleration = 15
+		#decceleration = 0.96
 		max_speed = 35
 	elif Global.difficulty == 2:
-		acceleration = 17
-		decceleration = 0.97
+		#acceleration = 17
+		#decceleration = 0.97
 		max_speed = 40
 	elif Global.difficulty == 3:
-		acceleration = 18
-		decceleration = 0.98
+		#acceleration = 18
+		#decceleration = 0.98
 		max_speed = 45
 	elif Global.difficulty == 4:
-		acceleration = 20
-		decceleration = 0.99
+		#acceleration = 20
+		#decceleration = 0.99
 		max_speed = 50
 	# Set skin
 	$Skin/Skin.queue_free()

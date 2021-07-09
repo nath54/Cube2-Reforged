@@ -85,20 +85,25 @@ func generate() -> void:
 	$Items/Fin.position = Vector2(fin[0]*tc, fin[1]*tc)
 	#
 	if Global.difficulty == 0:
+		Global.player.t = 30
+		Global.player.scale = Vector2(0.3, 0.3)
+		Global.player.get_node("Camera2D").zoom = Vector2(0.6, 0.6)
+	elif Global.difficulty == 1:
 		Global.player.t = 40
 		Global.player.scale = Vector2(0.4, 0.4)
-	elif Global.difficulty == 1:
+		Global.player.get_node("Camera2D").zoom = Vector2(0.8, 0.8)
+	elif Global.difficulty == 2:
 		Global.player.t = 50
 		Global.player.scale = Vector2(0.5, 0.5)
-	elif Global.difficulty == 2:
+		Global.player.get_node("Camera2D").zoom = Vector2(1, 1)
+	elif Global.difficulty == 3:
+		Global.player.t = 55
+		Global.player.scale = Vector2(0.55, 0.55)
+		Global.player.get_node("Camera2D").zoom = Vector2(1.1, 1.1)
+	elif Global.difficulty == 4:
 		Global.player.t = 60
 		Global.player.scale = Vector2(0.6, 0.6)
-	elif Global.difficulty == 3:
-		Global.player.t = 65
-		Global.player.scale = Vector2(0.65, 0.65)
-	elif Global.difficulty == 4:
-		Global.player.t = 70
-		Global.player.scale = Vector2(0.7, 0.7)
+		Global.player.get_node("Camera2D").zoom = Vector2(1.2, 1.2)
 	#
 	Global.player.spawn_x = deb[0] * tc + (tc-Global.player.t) / 2
 	Global.player.spawn_y = deb[1] * tc + (tc-Global.player.t) / 2
